@@ -3,7 +3,7 @@
 ## Project Team 
 Project Lead: Madhuri Pyreddy 
 
-Project Members: Chang Thao, Bryant Paolomo
+Project Members: Chang Thao, Bryant Palomo
 
 ## Project Timeline 
 Project Start Date: 2/2/21
