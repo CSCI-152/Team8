@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Login extends AppCompatActivity {
     EditText et_email, et_password;
@@ -37,7 +38,9 @@ public class Login extends AppCompatActivity {
         bt_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!isEmpty(et_email) || !isEmpty(et_password)) {
+                String email = et_email.getText().toString();
+                String Password = et_password.getText().toString();
+                if(email.isEmpty() || Password.isEmpty()) {
                     Toast.makeText(Login.this, "Please fill in all required fields.", Toast.LENGTH_SHORT).show();
                 } else {
                     userLogin(et_email.getText().toString(), et_password.getText().toString());
@@ -54,6 +57,8 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(Login.this, "Register Test!!", Toast.LENGTH_SHORT).show();
+                Intent goToRegister = new Intent(Login.this, Register.class);
+                startActivity(goToRegister);
             }
         });
     }
