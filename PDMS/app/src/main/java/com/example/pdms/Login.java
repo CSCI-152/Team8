@@ -14,8 +14,14 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import static com.google.firebase.database.FirebaseDatabase.getInstance;
 
 public class Login extends AppCompatActivity {
     EditText et_email, et_password;
@@ -56,7 +62,6 @@ public class Login extends AppCompatActivity {
         txt_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Login.this, "Register Test!!", Toast.LENGTH_SHORT).show();
                 Intent goToRegister = new Intent(Login.this, Register.class);
                 startActivity(goToRegister);
             }
@@ -72,7 +77,7 @@ public class Login extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 try {
                     if (task.isSuccessful()) {
-                        Toast.makeText(Login.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+                        getUserType();
                         //finish();
                     } else {
                         Toast.makeText(Login.this, "Login failed!", Toast.LENGTH_SHORT).show();
@@ -81,6 +86,31 @@ public class Login extends AppCompatActivity {
                 catch (Exception e) {
                     Toast.makeText(Login.this, "Error!", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+    }
+    private void getUserType() {
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("UserType")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot childSnapshot: snapshot.getChildren()) {
+                        String userType = childSnapshot.getValue().toString();
+                        if(userType.equals("Patients")) {
+                            Toast.makeText(Login.this, "Start Patient Dash", Toast.LENGTH_SHORT).show();
+                        } else if(userType.equals("Doctors")) {
+                            Toast.makeText(Login.this, "Start Admin Dash", Toast.LENGTH_SHORT).show();
+                        } else if(userType.equals("Admins")) {
+                            Toast.makeText(Login.this, "Start Doctor Dash", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Login.this, "error", Toast.LENGTH_SHORT).show();
             }
         });
     }
