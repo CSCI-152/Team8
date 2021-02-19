@@ -99,11 +99,14 @@ public class Login extends AppCompatActivity {
                     for (DataSnapshot childSnapshot: snapshot.getChildren()) {
                         String userType = childSnapshot.getValue().toString();
                         if(userType.equals("Patients")) {
-                            Toast.makeText(Login.this, "Start Patient Dash", Toast.LENGTH_SHORT).show();
+                            Intent patientDash = new Intent(Login.this, PatientDashboard.class);
+                            startActivity(patientDash);
                         } else if(userType.equals("Doctors")) {
-                            Toast.makeText(Login.this, "Start Admin Dash", Toast.LENGTH_SHORT).show();
+                            Intent doctorDash = new Intent(Login.this, DoctorDashboard.class);
+                            startActivity(doctorDash);
                         } else if(userType.equals("Admins")) {
-                            Toast.makeText(Login.this, "Start Doctor Dash", Toast.LENGTH_SHORT).show();
+                            Intent adminDash = new Intent(Login.this, AdminDashboard.class);
+                            startActivity(adminDash);
                         }
                     }
                 }

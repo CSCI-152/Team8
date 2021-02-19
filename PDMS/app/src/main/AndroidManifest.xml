@@ -17,6 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".PatientDashboard"></activity>
+        <activity android:name=".DoctorDashboard"></activity>
+        <activity android:name=".AdminDashboard"></activity>
     </application>
 
 </manifest>
