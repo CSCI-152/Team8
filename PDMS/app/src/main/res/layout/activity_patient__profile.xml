@@ -137,27 +137,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PatientPhoneNumTxt" />
 
-    <ScrollView
-        android:layout_width="385dp"
-        android:layout_height="201dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PatientMedHistoryTxt">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/PatientMedHistV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Medical History " />
-        </LinearLayout>
-    </ScrollView>
-
     <TextView
         android:id="@+id/PatientEditProfile"
         android:layout_width="wrap_content"
@@ -170,5 +149,16 @@
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PatientProfile" />
+
+    <TextView
+        android:id="@+id/PatientMedHistV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="32dp"
+        android:hint="asthma, heart disease, etc"
+        app:layout_constraintStart_toEndOf="@+id/PatientMedHistoryTxt"
+        app:layout_constraintTop_toBottomOf="@+id/PatientPhoneV" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

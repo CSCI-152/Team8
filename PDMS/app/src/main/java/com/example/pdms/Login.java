@@ -102,6 +102,7 @@ public class Login extends AppCompatActivity {
                         String userType = childSnapshot.getValue().toString();
                         if (userType.equals("Patients")) {
                             Toast.makeText(Login.this, "Start Patient Dash", Toast.LENGTH_SHORT).show();
+
                         } else if (userType.equals("Doctors")) {
                             Toast.makeText(Login.this, "Start Admin Dash", Toast.LENGTH_SHORT).show();
                         } else if (userType.equals("Admins")) {

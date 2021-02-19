@@ -6,17 +6,19 @@ public class PatientsProfile {
     private String ReferredBy;
     private String BloodGroup;
     private String PhoneNum;
+    private String MedicalHistory;
 
     public PatientsProfile() {
 
     }
 
-    public PatientsProfile(String name, String DOB, String referredBy, String bloodGroup, String phoneNum) {
+    public PatientsProfile(String name, String DOB, String referredBy, String bloodGroup, String phoneNum, String medicalHistory) {
         this.Name = name;
         this.DOB = DOB;
         this.ReferredBy = referredBy;
         this.BloodGroup = bloodGroup;
         this.PhoneNum = phoneNum;
+        this.MedicalHistory = medicalHistory;
     }
 
     public String getName() {
@@ -57,5 +59,13 @@ public class PatientsProfile {
 
     public void setPhoneNum(String phoneNum) {
         PhoneNum = phoneNum;
+    }
+
+    public String getMedicalHistory() {
+        return MedicalHistory;
+    }
+
+    public void setMedicalHistory(String medicalHistory) {
+        MedicalHistory = medicalHistory;
     }
 }

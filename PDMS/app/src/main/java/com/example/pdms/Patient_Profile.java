@@ -27,7 +27,7 @@ public class Patient_Profile extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog alertDialog;
-    private EditText EditName, EditDOB, EditRefBy, EditBlood, EditPhone;
+    private EditText EditName, EditDOB, EditRefBy, EditBlood, EditPhone,EditMedHist;
     private Button EditSave, EditCancel;
     private TextView Edit;
 
@@ -41,6 +41,7 @@ public class Patient_Profile extends AppCompatActivity {
         final TextView RefBy = findViewById(R.id.PatientReferredByV);
         final TextView BloodGroup = findViewById(R.id.PatietnBloodV);
         final TextView PhoneNum = findViewById(R.id.PatientPhoneV);
+        final TextView PatientMedHist = findViewById(R.id.PatientMedHistV);
 
         Edit = findViewById(R.id.PatientEditProfile);
 
@@ -57,12 +58,14 @@ public class Patient_Profile extends AppCompatActivity {
                     String ReffBy = profile.getReferredBy();
                     String BloodG = profile.getBloodGroup();
                     String PhoneNumb = profile.getPhoneNum();
+                    String MedHist = profile.getMedicalHistory();
 
                     PatientNameV.setText(name);
                     PatientDOB.setText(DOB);
                     RefBy.setText(ReffBy);
                     BloodGroup.setText(BloodG);
                     PhoneNum.setText(PhoneNumb);
+                    PatientMedHist.setText(MedHist);
                 }
             }
 
@@ -89,6 +92,7 @@ public class Patient_Profile extends AppCompatActivity {
         EditRefBy = (EditText) EditProfile.findViewById(R.id.EditPatientRefBy);
         EditBlood = (EditText) EditProfile.findViewById(R.id.EditPatientBloodGroup);
         EditPhone = (EditText) EditProfile.findViewById(R.id.EditPatientPhone);
+        EditMedHist = (EditText) EditProfile.findViewById(R.id.EditPatientMedHist);
 
         EditSave = (Button) EditProfile.findViewById(R.id.EditPatientSave);
         EditCancel = (Button) EditProfile.findViewById(R.id.EditPatientCancel);
@@ -100,9 +104,11 @@ public class Patient_Profile extends AppCompatActivity {
         EditSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PatientsProfile newProfile = new PatientsProfile(EditName.getText().toString()
-                        ,EditDOB.getText().toString(),EditRefBy.getText().toString(),EditBlood.getText().toString(),
-                        EditPhone.getText().toString());
+
+                PatientsProfile newProfile = new PatientsProfile(EditName.getText().toString(),
+                        EditDOB.getText().toString(),EditRefBy.getText().toString(),
+                        EditBlood.getText().toString(), EditPhone.getText().toString(),
+                        EditMedHist.getText().toString());
 
                 FirebaseDatabase.getInstance().getReference("PatientsProfile")
                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
