@@ -77,6 +77,7 @@ public class Login extends AppCompatActivity {
                 try {
                     if (task.isSuccessful()) {
                         Toast.makeText(Login.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+                        getUserType();
                         //finish();
                     } else {
                         Toast.makeText(Login.this, "Login failed!", Toast.LENGTH_SHORT).show();
@@ -87,6 +88,35 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void getUserType() {
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("UserType")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        userRef.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                        String userType = childSnapshot.getValue().toString();
+                        if (userType.equals("Patients")) {
+                            Toast.makeText(Login.this, "Start Patient Dash", Toast.LENGTH_SHORT).show();
+                        } else if (userType.equals("Doctors")) {
+                            Toast.makeText(Login.this, "Start Admin Dash", Toast.LENGTH_SHORT).show();
+                        } else if (userType.equals("Admins")) {
+                            Toast.makeText(Login.this, "Start Doctor Dash", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Login.this, "error", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 }
