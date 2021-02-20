@@ -18,6 +18,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -89,6 +92,7 @@ public class Login extends AppCompatActivity {
             }
         });
     }
+
     private void getUserType() {
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("UserType")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
@@ -111,10 +115,12 @@ public class Login extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(Login.this, "error", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 }

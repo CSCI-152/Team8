@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Patient_Profile">
+
+    <TextView
+        android:id="@+id/PatientProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Patient Profile"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/PatientNameTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:text="Patient Name: "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.113"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PatientProfile" />
+
+    <TextView
+        android:id="@+id/PatientDOBTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="DOB: "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PatientNameTxt" />
+
+    <TextView
+        android:id="@+id/PatientReferredByTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Referred By: "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PatientDOBTxt" />
+
+    <TextView
+        android:id="@+id/PatientBloodGroupTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Blood Group: "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PatientReferredByTxt" />
+
+    <TextView
+        android:id="@+id/PatientPhoneNumTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="32dp"
+        android:text="Phone Number: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PatientBloodGroupTxt" />
+
+    <TextView
+        android:id="@+id/PatientNameV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="84dp"
+        android:hint="First Last"
+        app:layout_constraintStart_toEndOf="@+id/PatientNameTxt"
+        app:layout_constraintTop_toBottomOf="@+id/PatientProfile" />
+
+    <TextView
+        android:id="@+id/PatientDOBV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="32dp"
+        android:hint="00/00/0000"
+        app:layout_constraintStart_toEndOf="@+id/PatientDOBTxt"
+        app:layout_constraintTop_toBottomOf="@+id/PatientNameV" />
+
+    <TextView
+        android:id="@+id/PatientReferredByV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="36dp"
+        android:hint="Last"
+        app:layout_constraintStart_toEndOf="@+id/PatientReferredByTxt"
+        app:layout_constraintTop_toBottomOf="@+id/PatientDOBV" />
+
+    <TextView
+        android:id="@+id/PatietnBloodV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="32dp"
+        android:hint="AB"
+        app:layout_constraintStart_toEndOf="@+id/PatientBloodGroupTxt"
+        app:layout_constraintTop_toBottomOf="@+id/PatientReferredByV" />
+
+    <TextView
+        android:id="@+id/PatientPhoneV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="32dp"
+        android:hint="000-000-0000"
+        app:layout_constraintStart_toEndOf="@+id/PatientPhoneNumTxt"
+        app:layout_constraintTop_toBottomOf="@+id/PatietnBloodV" />
+
+    <TextView
+        android:id="@+id/PatientMedHistoryTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="32dp"
+        android:text="Medical History: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PatientPhoneNumTxt" />
+
+    <TextView
+        android:id="@+id/PatientEditProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="24dp"
+        android:text="Edit"
+        android:textColor="#273FDC"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PatientProfile" />
+
+    <TextView
+        android:id="@+id/PatientMedHistV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="32dp"
+        android:hint="asthma, heart disease, etc"
+        app:layout_constraintStart_toEndOf="@+id/PatientMedHistoryTxt"
+        app:layout_constraintTop_toBottomOf="@+id/PatientPhoneV" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
