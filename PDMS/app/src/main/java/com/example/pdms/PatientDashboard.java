@@ -2,10 +2,14 @@ package com.example.pdms;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class PatientDashboard extends AppCompatActivity {
     Button btn_profile, btn_settings, btn_calendarandreservation,btn_search, btn_contact, btn_about, btn_bill, btn_logout;
@@ -55,7 +59,10 @@ public class PatientDashboard extends AppCompatActivity {
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(PatientDashboard.this, "SIGN OUT", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(PatientDashboard.this, "SIGN OUT", Toast.LENGTH_SHORT).show();
+                FirebaseAuth.getInstance().signOut();
+                Intent toLogin = new Intent(PatientDashboard.this, Login.class);
+                startActivity(toLogin);
             }
         });
         btn_about.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +74,9 @@ public class PatientDashboard extends AppCompatActivity {
         btn_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(PatientDashboard.this, "GO TO YOUR PROFILE", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(PatientDashboard.this, "GO TO YOUR PROFILE", Toast.LENGTH_SHORT).show();
+                Intent toProfile = new Intent(PatientDashboard.this, Patient_Profile.class);
+                startActivity(toProfile);
             }
         });
 
