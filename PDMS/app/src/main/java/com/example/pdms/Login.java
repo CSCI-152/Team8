@@ -18,6 +18,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -89,6 +92,7 @@ public class Login extends AppCompatActivity {
             }
         });
     }
+
     private void getUserType() {
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("UserType")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
@@ -99,19 +103,24 @@ public class Login extends AppCompatActivity {
                     for (DataSnapshot childSnapshot: snapshot.getChildren()) {
                         String userType = childSnapshot.getValue().toString();
                         if(userType.equals("Patients")) {
-                            Toast.makeText(Login.this, "Start Patient Dash", Toast.LENGTH_SHORT).show();
+                            Intent patientDash = new Intent(Login.this, PatientDashboard.class);
+                            startActivity(patientDash);
                         } else if(userType.equals("Doctors")) {
-                            Toast.makeText(Login.this, "Start Admin Dash", Toast.LENGTH_SHORT).show();
+                            Intent doctorDash = new Intent(Login.this, DoctorDashboard.class);
+                            startActivity(doctorDash);
                         } else if(userType.equals("Admins")) {
-                            Toast.makeText(Login.this, "Start Doctor Dash", Toast.LENGTH_SHORT).show();
+                            Intent adminDash = new Intent(Login.this, AdminDashboard.class);
+                            startActivity(adminDash);
                         }
                     }
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(Login.this, "error", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 }

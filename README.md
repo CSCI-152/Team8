@@ -12,7 +12,7 @@ Project Completion Date (Hopefully) : 4/29/21
 
 ## Project Description: 
 
- This is a mobile application that will help patients schedule their appointments with doctors online. This platform is for patients who are unable to see their doctor in person to schedule their appointments. This app would interface with their local hospitals, providing the patients the option of reserving their online appointments based on their preferred days and times. Patients that want to reserve their appointments with their doctors can use the software to schedule/reschedule the appointments remotely and at their convenience. 
+PDMS is a mobile application that will help patients schedule their appointments with doctors online. This platform is for patients who are unable to see their doctor in person to schedule their appointments. This app would interface with their local hospitals, providing the patients the option of reserving their online appointments based on their preferred days and times. Patients that want to reserve their appointments with their doctors can use the software to schedule/reschedule the appointments remotely and at their convenience. 
 
 
 ## Features implemented for User, Doctor, Admin: 
