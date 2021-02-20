@@ -2,6 +2,7 @@ package com.example.pdms;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -67,7 +68,9 @@ public class PatientDashboard extends AppCompatActivity {
         btn_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(PatientDashboard.this, "GO TO YOUR PROFILE", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(PatientDashboard.this, "GO TO YOUR PROFILE", Toast.LENGTH_SHORT).show();
+                Intent toProfile = new Intent(PatientDashboard.this, Patient_Profile.class);
+                startActivity(toProfile);
             }
         });
 
