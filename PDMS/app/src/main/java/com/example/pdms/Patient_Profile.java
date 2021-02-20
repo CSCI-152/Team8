@@ -3,6 +3,7 @@ package com.example.pdms;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.icu.text.Edits;
 import android.os.Bundle;
@@ -11,9 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,19 +25,22 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class Patient_Profile extends AppCompatActivity {
 
-    private DatabaseReference databaseReference;
-    private AlertDialog.Builder dialogBuilder;
+     DatabaseReference databaseReference;
+     AlertDialog.Builder dialogBuilder;
     private AlertDialog alertDialog;
     private EditText EditName, EditDOB, EditRefBy, EditBlood, EditPhone,EditMedHist;
-    private Button EditSave, EditCancel;
-    private TextView Edit;
+     Button EditSave, EditCancel;
+     TextView Edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient__profile);
+
 
         final TextView PatientNameV = findViewById(R.id.PatientNameV);
         final TextView PatientDOB = findViewById(R.id.PatientDOBV);
