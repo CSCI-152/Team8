@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PDMS">
-        <activity android:name=".Patient_Profile"></activity>
+        <activity android:name=".Patient_Profile"
+          android:parentActivityName=".PatientDashboard"  >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.pdms.PatientDashboard" />
+        </activity>
         <activity android:name=".Register" />
         <activity android:name=".Login">
             <intent-filter>
