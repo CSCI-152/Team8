@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="btn_DoctorX" type="id">id</item>
-    <item name="btn_DoctorY" type="id">id</item>
-    <item name="btn_AdminA" type="id">id</item>
-    <item name="btn_AdminB" type="id">id</item>
-    <item name="list_itemNote3" type="id">id</item>
-    <item name="call" type="id">id</item>
-    <item name="list_email" type="id">id</item>
-    <item name="list_itemNote2" type="id">id</item>
+    <item name="DoctorY1" type="id" />
+    <item name="DoctorX1" type="id" />
+    <item name="DoctorX1address" type="id" />
+    <item name="btn_DoctorX" type="id" />
+    <item name="DoctorY1address" type="id" />
+    <item name="btn_DoctorY" type="id" />
+    <item name="AdminA1" type="id" />
+    <item name="AdminA1address" type="id" />
+    <item name="btn_AdminA" type="id" />
+    <item name="AdminB1" type="id" />
+    <item name="AdminB1address" type="id" />
+    <item name="btn_AdminB" type="id" />
 </resources>

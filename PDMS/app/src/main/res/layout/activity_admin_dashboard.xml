@@ -78,7 +78,7 @@
                                     android:layout_width = "60dp"
                                     android:id = "@+id/imageView1"
                                     android:layout_height = "60dp"
-                                    android:src = "@drawable/modifyusers"
+                                    android:src = "@drawable/modifyuser"
                                     android:layout_centerInParent = "true"
                                     />
                                 <TextView
