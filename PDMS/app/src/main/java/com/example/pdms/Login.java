@@ -81,7 +81,6 @@ public class Login extends AppCompatActivity {
                 try {
                     if (task.isSuccessful()) {
                         getUserType();
-                        //finish();
                     } else {
                         Toast.makeText(Login.this, "Login failed!", Toast.LENGTH_SHORT).show();
                     }
@@ -105,12 +104,15 @@ public class Login extends AppCompatActivity {
                         if(userType.equals("Patients")) {
                             Intent patientDash = new Intent(Login.this, PatientDashboard.class);
                             startActivity(patientDash);
+                            finish();
                         } else if(userType.equals("Doctors")) {
                             Intent doctorDash = new Intent(Login.this, DoctorDashboard.class);
                             startActivity(doctorDash);
+                            finish();
                         } else if(userType.equals("Admins")) {
                             Intent adminDash = new Intent(Login.this, AdminDashboard.class);
                             startActivity(adminDash);
+                            finish();
                         }
                     }
                 }
