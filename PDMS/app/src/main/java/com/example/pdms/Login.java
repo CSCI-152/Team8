@@ -59,7 +59,9 @@ public class Login extends AppCompatActivity {
         txt_forgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Login.this, "Forgot Test!!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Login.this, "Forgot Test!!", Toast.LENGTH_SHORT).show();
+                Intent toForgotPassword = new Intent(Login.this, Forgot_Password.class);
+                startActivity(toForgotPassword);
             }
         });
         txt_register.setOnClickListener(new View.OnClickListener() {
