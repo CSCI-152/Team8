@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "561577429664",
+    "firebase_url": "https://doctor-patient-management-default-rtdb.firebaseio.com",
+    "project_id": "doctor-patient-management",
+    "storage_bucket": "doctor-patient-management.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561577429664:android:63999a2853b711afe557c5",
+        "android_client_info": {
+          "package_name": "com.example.pdms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "561577429664-qplbm40qmhvkvokp7bbn73r8685u0qre.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAj2wuX9w4yEFtMhvPIsRCoD0S0MROgqvs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "561577429664-qplbm40qmhvkvokp7bbn73r8685u0qre.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561577429664:android:75ba04fa34d6eee1e557c5",
+        "android_client_info": {
+          "package_name": "com.example.pdsm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "561577429664-qplbm40qmhvkvokp7bbn73r8685u0qre.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAj2wuX9w4yEFtMhvPIsRCoD0S0MROgqvs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "561577429664-qplbm40qmhvkvokp7bbn73r8685u0qre.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
