@@ -1,44 +1,93 @@
 package com.example.pdms;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class AdminAccountSearch extends AppCompatActivity {
-    EditText username, password;
-    TextView textView;
-    Admin_Controller controller;
+    Button btnAdd;
+    EditText etUsername, etPassword;
+    DatabaseReference databaseReference;
+    ListView listViewPatients;
+    List<Patient> patientList;
+    public static String patientId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_account_search);
-        username = (EditText)findViewById(R.id.username_input);
-        password = (EditText)findViewById(R.id.password_input);
-        textView = (TextView) findViewById(R.id.textView);
-        controller = new Admin_Controller(this, "", null, 1);
 
-    }
-    public void btn_click(View view) {
-        switch (view.getId()) {
-            case R.id.btn_insert:
-                try {
-                    controller.insert_users(username.getText().toString(), password.getText().toString());
+        patientList = new ArrayList<Patient>();
+        databaseReference = FirebaseDatabase.getInstance().getReference("PatientAccounts");
 
-                } catch (SQLiteException e) {
-                    Toast.makeText(AdminAccountSearch.this, "ALREADY EXISTS", Toast.LENGTH_SHORT).show();
+        btnAdd = (Button)findViewById(R.id.btnAdd);
+        etUsername = (EditText)findViewById(R.id.etUsername);
+        etPassword = (EditText)findViewById(R.id.etPassword);
+        listViewPatients = (ListView)findViewById(R.id.listViewPatients);
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username = etUsername.getText().toString();
+                String password = etPassword.getText().toString();
+
+                if(TextUtils.isEmpty(patientId)) {
+                    //add
+                    String id = databaseReference.push().getKey();
+                    Patient patient = new Patient(id, username, password);
+                    databaseReference.child(id).setValue(patient);
+
+                    Toast.makeText(AdminAccountSearch.this, "Patient Account Created: Success", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    //update
+                    databaseReference.child(patientId).child("username").setValue(username);
+                    databaseReference.child(patientId).child("password").setValue(password);
+                    Toast.makeText(AdminAccountSearch.this, "Patient Account Updated: Success", Toast.LENGTH_SHORT).show();
 
                 }
-                break;
-            case R.id.btn_remove:
-                controller.delete_users(username.getText().toString());
-                break;
-            case R.id.list_all_patients:
-                controller.list_all_users(textView);
-                break;
-        }
+                etUsername.setText(null);
+                etPassword.setText(null);
+            }
+        });
+    }
+
+    protected void onStart() {
+        super.onStart();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                patientList.clear();
+                for(DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    Patient patient = postSnapshot.getValue(Patient.class);
+                    patientList.add(patient);
+                }
+                PatientList patientAdapter = new PatientList(AdminAccountSearch.this, patientList, databaseReference, etUsername, etPassword);
+                listViewPatients.setAdapter(patientAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

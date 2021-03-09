@@ -1,84 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id = "@+id/linear"
-    android:orientation = "vertical"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
     tools:context=".AdminAccountSearch">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation = "vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.188">
+
+        <EditText
+            android:id="@+id/etUsername"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Username: "
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.243">
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="414dp"
+            android:layout_height="58dp"
+            android:hint="Password: "
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.243">
+
+        </EditText>
+
+
+
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text = "Admin Account Search"
-        android:gravity = "center"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="Admin Account Search"
+        android:textColor="@color/purple_700"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:background = "@color/white"
-        android:textColor="@color/purple_700"
-        android:layout_marginTop="16dp"/>
-    <EditText
-        android:id="@+id/username_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:hint="Username"
-        />
-
-    <EditText
-        android:id="@+id/password_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/username_input"
-        android:background="@color/white"
-        android:hint="Password:" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.083"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="15dp" />
 
     <Button
-        android:layout_width="match_parent"
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background = "@color/white"
-        android:text = "Add Patient Info"
-        android:layout_centerHorizontal="true"
-        android:layout_below = "@+id/email_input"
-        android:textStyle = "bold"
-        android:textColor="@color/purple_200"
-        android:layout_marginTop="16dp"
-        android:id = "@+id/btn_insert"
-        android:onClick="btn_click"/>
+        android:text="Add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.385" />
 
-    <Button
-        android:id = "@+id/btn_delete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_add"
-        android:layout_centerHorizontal="true"
-        android:text = "Remove Patient Info"
-        android:textStyle = "bold"
-        android:textColor="@color/purple_200"
-        android:layout_marginTop="16dp"
-        android:background="@color/white"
-        android:onClick="btn_click"/>
-    <Button
-        android:id = "@+id/list_all_patients"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_remove"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:background="@color/white"
-        android:text="LIST OF PATIENTS"
-        android:textColor="@color/purple_200"
-        android:textStyle="bold"
-        android:onClick="btn_click"/>
+
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
+        android:layout_width="414dp"
+        android:layout_height="412dp"
         android:gravity="top|center"
-        android:text="Patient Accounts Below"
-        android:id = "@+id/textView"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:text="Patients' Accounts List"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
-</LinearLayout>
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.975" />
+
+    <ListView
+        android:id = "@+id/listViewPatients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.975"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
