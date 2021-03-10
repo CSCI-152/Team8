@@ -54,7 +54,7 @@ public class DoctorPrescription extends AppCompatActivity {
                 prescription.setAddress(editTextAddress.getText().toString().trim());
                 prescription.setAge(editTextAge.getText().toString().trim());
                 prescription.setGender(editTextGender.getText().toString().trim());
-                prescription.setNote(editTextNote.getText().toString().trim());
+                prescription.setMedication(editTextNote.getText().toString().trim());
                 prescription.setSignature(editTextSignature.getText().toString().trim());
                 prescription.setDate(editTextDate.getText().toString().trim());
                 prescriptionDbRef.push().setValue(prescription);

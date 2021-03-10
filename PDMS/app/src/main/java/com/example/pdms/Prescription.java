@@ -1,6 +1,5 @@
 package com.example.pdms;
 
-
 public class Prescription {
     private String doctorname;
     private String doctoraddress;
@@ -9,14 +8,14 @@ public class Prescription {
     private String address;
     private String age;
     private String gender;
-    private String note;
+    private String medication;
     private String signature;
     private String date;
 
     public Prescription() {
 
     }
-    public Prescription(String doctorname, String doctoraddress, String patientname, String phonenumber, String address, String age, String gender, String note, String signature, String date) {
+    public Prescription(String doctorname, String doctoraddress, String patientname, String phonenumber, String address, String age, String gender, String medication, String signature, String date) {
         doctorname = doctorname;
         doctoraddress = doctoraddress;
         patientname = patientname;
@@ -24,7 +23,7 @@ public class Prescription {
         address = address;
         age = age;
         gender = gender;
-        note = note;
+        medication = medication;
         signature = signature;
         date = date;
     }
@@ -85,12 +84,12 @@ public class Prescription {
         this.gender = gender;
     }
 
-    public String getNote() {
-        return note;
+    public String getMedication() {
+        return medication;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setMedication(String medication) {
+        this.medication = medication;
     }
 
     public String getSignature() {
@@ -109,4 +108,3 @@ public class Prescription {
         this.date = date;
     }
 }
-
