@@ -47,7 +47,9 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(PatientDashboard.this, "GO TO SEARCH", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(PatientDashboard.this, "GO TO SEARCH", Toast.LENGTH_SHORT).show();
+                Intent patientSearch = new Intent(PatientDashboard.this, PatientSearch.class);
+                startActivity(patientSearch);
             }
         });
 
