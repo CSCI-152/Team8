@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -59,6 +60,9 @@ public class DoctorPrescription extends AppCompatActivity {
                 prescription.setDate(editTextDate.getText().toString().trim());
                 prescriptionDbRef.push().setValue(prescription);
                 Toast.makeText(DoctorPrescription.this, "Prescription completed", Toast.LENGTH_SHORT).show();
+                Intent back_to_Dashbaord = new Intent(DoctorPrescription.this, DoctorDashboard.class);
+                startActivity(back_to_Dashbaord);
+                finish();
             }
         });
 
