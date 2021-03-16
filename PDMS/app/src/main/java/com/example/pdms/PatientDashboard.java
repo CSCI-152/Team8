@@ -38,18 +38,23 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
         btn_calendarandreservation = (Button)findViewById(R.id.buttonCALENDARANDRESERVATION);
         btn_search = (Button)findViewById(R.id.buttonSEARCH);
 
-        btn_calendarandreservation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(PatientDashboard.this, "RESERVE APPOINTMENT", Toast.LENGTH_SHORT).show();
-            }
-        });
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(PatientDashboard.this, "GO TO SEARCH", Toast.LENGTH_SHORT).show();
                 Intent patientSearch = new Intent(PatientDashboard.this, PatientSearch.class);
                 startActivity(patientSearch);
+            }
+        });
+        btn_calendarandreservation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(PatientDashboard.this, "RESERVE APPOINTMENT", Toast.LENGTH_SHORT).show();
+                Intent patientReservation = new Intent(getBaseContext(), PatientReservation.class);
+                LocalDoctor blankDoctor = new LocalDoctor("","");
+                patientReservation.putExtra("LocalDoctor", blankDoctor);
+                startActivity(patientReservation);
+
             }
         });
 

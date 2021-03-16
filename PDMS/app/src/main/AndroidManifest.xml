@@ -33,6 +33,7 @@
         <activity android:name=".PatientSettings" />
         <activity android:name=".PatientAboutUs" />
         <activity android:name=".PatientContactUs" />
+        <activity android:name=".PatientReservation" />
         <activity android:name=".AdminA" />
         <activity android:name=".AdminB" />
         <activity android:name=".DoctorX" />
