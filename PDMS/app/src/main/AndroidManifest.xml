@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PDMS">
-        <activity android:name=".Forgot_Password"></activity>
+        <activity android:name=".Forgot_Password" />
         <activity
             android:name=".Patient_Profile"
             android:parentActivityName=".PatientDashboard">
@@ -26,6 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PatientDashboard" />
+        <activity android:name=".DoctorPrescription"/>
         <activity android:name=".DoctorDashboard" />
         <activity android:name=".AdminDashboard" />
     </application>
