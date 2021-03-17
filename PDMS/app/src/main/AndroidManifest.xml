@@ -10,10 +10,11 @@
         android:supportsRtl="true"
         android:name="androidx.multidex.MultiDexApplication"
         android:theme="@style/Theme.PDMS">
+
         <meta-data
             android:name="firebase_inapp_message_auto_data_collection_enabled"
             android:value="false" />
-        <activity android:name=".Forgot_Password"></activity>
+        <activity android:name=".Forgot_Password" />
         <activity
             android:name=".Patient_Profile"
             android:parentActivityName=".PatientDashboard">
@@ -30,6 +31,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PatientDashboard" />
+        <activity android:name=".DoctorPrescription"/>
         <activity android:name=".DoctorDashboard" />
         <activity android:name=".AdminDashboard" />
         <activity android:name=".AdminAccountSearch" />

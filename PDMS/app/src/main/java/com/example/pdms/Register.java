@@ -118,8 +118,6 @@ public class Register extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(Register.this, "Register Successful", Toast.LENGTH_SHORT).show();
-                    Intent goToLogin = new Intent(Register.this, Login.class);
-                    startActivity(goToLogin);
                     finish();
                 }
                 else{

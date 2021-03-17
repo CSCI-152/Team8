@@ -36,16 +36,18 @@ public class DoctorDashboard extends AppCompatActivity {
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Intent Doctor_logout = new Intent(DoctorDashboard.this, Login.class);
                 FirebaseAuth.getInstance().signOut();
-                Intent DoctortoLogin = new Intent(DoctorDashboard.this, Login.class);
-                startActivity(DoctortoLogin);
+                startActivity(Doctor_logout);
                 finish();
             }
         });
         btn_medication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DoctorDashboard.this, "GO TO MEDICATIONS", Toast.LENGTH_SHORT).show();
+                Intent Doctor_prescription = new Intent(DoctorDashboard.this, DoctorPrescription.class);
+                startActivity(Doctor_prescription);
             }
         });
     }
