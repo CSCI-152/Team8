@@ -2,10 +2,13 @@ package com.example.pdms;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class DoctorDashboard extends AppCompatActivity {
     Button btn_appointment, btn_chart, btn_medication, btn_logout;
@@ -33,13 +36,17 @@ public class DoctorDashboard extends AppCompatActivity {
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DoctorDashboard.this, "SIGN OUT", Toast.LENGTH_SHORT).show();
+                Intent Doctor_logout = new Intent(DoctorDashboard.this, Login.class);
+                FirebaseAuth.getInstance().signOut();
+                startActivity(Doctor_logout);
+                finish();
             }
         });
         btn_medication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DoctorDashboard.this, "GO TO MEDICATIONS", Toast.LENGTH_SHORT).show();
+                Intent Doctor_prescription = new Intent(DoctorDashboard.this, DoctorPrescription.class);
+                startActivity(Doctor_prescription);
             }
         });
     }
