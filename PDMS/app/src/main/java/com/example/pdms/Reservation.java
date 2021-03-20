@@ -2,24 +2,24 @@ package com.example.pdms;
 
 public class Reservation {
     private String Date;
-    private String Patient;
-    private String Doctor;
+    private String PatientID;
+    private String DoctorID;
     private String Hospital;
 
     public Reservation(String Date, String Patient, String Doctor, String Hospital) {
         this.Date = Date;
-        this.Patient = Patient;
-        this.Doctor = Doctor;
+        this.PatientID = Patient;
+        this.DoctorID = Doctor;
         this.Hospital = Hospital;
     }
     public String getDate() {
         return Date;
     }
-    public String getPatient() {
-        return Patient;
+    public String getPatientID() {
+        return PatientID;
     }
-    public String getDoctor() {
-        return Doctor;
+    public String getDoctorID() {
+        return DoctorID;
     }
     public String getHospital() {
         return Hospital;
