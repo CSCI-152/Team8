@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PDMS">
-        <activity android:name=".Patient_Bill"></activity>
+        <activity android:name=".Patient_Bill"/>
         <activity
             android:name=".Patient_Profile"
             android:parentActivityName=".PatientDashboard">
@@ -27,9 +27,9 @@
         </activity>
         <activity android:name=".PatientDashboard" />
         <activity android:name=".DoctorPrescription" />
-        <activity android:name=".PatientSettings" />
-        <activity android:name=".PatientAboutUs" />
-        <activity android:name=".PatientContactUs" />
+        <activity android:name=".PatientSettings"/>
+        <activity android:name=".PatientAboutUs"/>
+        <activity android:name=".PatientContactUs"/>
         <activity android:name=".Forgot_Password" />
         <activity android:name=".DoctorDashboard" />
         <activity android:name=".DoctorX" />
