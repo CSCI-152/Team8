@@ -21,7 +21,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -87,7 +89,7 @@ public class PatientReservation extends AppCompatActivity {
         bt_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                makeReservationCurrent();
+                makeCurrentReservation();
             }
         });
         bt_cancel.setOnClickListener(new View.OnClickListener() {
@@ -162,36 +164,10 @@ public class PatientReservation extends AppCompatActivity {
         dialog = dialogBuilder.create();
         dialog.show();
 
-        pp_cv_calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
-                String date = (month + 1) +"/"+dayOfMonth+"/"+year;
-                txt_selectedDate.setText(date);
-            }
-        });
-        pp_tp_timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-            @Override
-            public void onTimeChanged(TimePicker timePicker, int hour, int minute) {
-                int newHour = convertHour(hour);
-                int cutoffLine = 0;
-                cutoffLine = cutoffLine + txt_selectedDate.getText().toString().indexOf("@");
-                if(cutoffLine > 0) {
-                    String time = txt_selectedDate.getText().toString().substring(0, cutoffLine - 1) + " @ " + newHour + ":" + minute;
-                    txt_selectedDate.setText(time);
-                } else {
-                    String time = txt_selectedDate.getText().toString() + " @ " + newHour + ":" + minute;
-                    txt_selectedDate.setText(time);
-                }
-            }
-        });
-
         pp_bt_date_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //set text to new date
-                if(!txt_selectedDate.getText().toString().isEmpty()) {
-                    bt_selectDate.setText("Change Date");
-                }
+                displayDate(pp_cv_calendarView.getDate(),pp_tp_timePicker.getCurrentHour(),pp_tp_timePicker.getCurrentMinute());
                 dialog.dismiss();
             }
         });
@@ -203,42 +179,37 @@ public class PatientReservation extends AppCompatActivity {
             }
         });
     }
-    private int convertHour(int hour) {
-        if (hour > 13) {
-            return (hour -12);
-        }
-        return hour;
+
+    private void displayDate(long dateString, int currentHour, int currentMinute) {
+        Date newDate = new Date(dateString);
+        newDate.setHours(currentHour);
+        newDate.setMinutes(currentMinute);
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm aa");
+        txt_selectedDate.setText(sdf.format(newDate));
     }
-    private void makeReservationCurrent(){
+
+    private void makeCurrentReservation(){
         String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         String doctorID = selectedDoctor.getUID();
-        Reservation currentReservation = new Reservation(txt_selectedDate.getText().toString(),
+        Reservation currentReservation = new Reservation(pp_cv_calendarView.getDate(),
+                pp_tp_timePicker.getCurrentHour(),
+                pp_tp_timePicker.getCurrentMinute(),
                 userID,
                 doctorID,
                 txt_hospitalName.getText().toString());
-        //store reservation to firebase
-        //need to generate unique id
-        String reservationID = hashReservationID(userID, doctorID);
         FirebaseDatabase.getInstance().getReference("Reservations")
-                .child(reservationID)
+                .child(currentReservation.getReservationID())
                 .setValue(currentReservation).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(PatientReservation.this, "Reservation made!", Toast.LENGTH_SHORT).show();
-                    finish();
+                    //start next task
                 }
                 else{
                     Toast.makeText(PatientReservation.this, "There was an error", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-    }
-    private String hashReservationID(String userID, String doctorID){
-        String reservationID = "";
-        for (int i = 0; i < 14; i++) {
-            reservationID = reservationID + userID.charAt(i) + doctorID.charAt(i);
-        }
-        return reservationID;
     }
 }
