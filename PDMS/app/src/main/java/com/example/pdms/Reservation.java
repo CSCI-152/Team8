@@ -7,22 +7,22 @@ import java.time.LocalDateTime;
 import androidx.annotation.RequiresApi;
 
 public class Reservation {
-    private String reservationID;
+    private String ReservationID;
     private LocalDateTime ReservationTime;
     private String PatientID;
     private String DoctorID;
     private String Hospital;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public Reservation(long calendarDate, int currentHour, int currentMinute, String Patient, String Doctor, String Hospital) {
-        this.reservationID = createReservationID(Patient, Doctor);
+    public Reservation(Date calendarDate, int currentHour, int currentMinute, String Patient, String Doctor, String Hospital) {
+        this.ReservationID = createReservationID(Patient, Doctor);
         this.ReservationTime = createReservationTime(calendarDate,currentHour,currentMinute);
         this.PatientID = Patient;
         this.DoctorID = Doctor;
         this.Hospital = Hospital;
     }
     public String getReservationID() {
-        return reservationID;
+        return ReservationID;
     }
     public LocalDateTime getReservationTime() {
         return ReservationTime;
@@ -36,10 +36,11 @@ public class Reservation {
     public String getHospital() {
         return Hospital;
     }
+
     public void changeDate(LocalDateTime newDate) {
         this.ReservationTime = newDate;
     }
-    public String createReservationID(String userID, String doctorID){
+    private String createReservationID(String userID, String doctorID){
         String reservationID = "";
         for (int i = 0; i < 14; i++) {
             reservationID = reservationID + userID.charAt(i) + doctorID.charAt(i);
@@ -47,9 +48,8 @@ public class Reservation {
         return reservationID;
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public LocalDateTime createReservationTime(long dateString, int currentHour, int currentMinute){
-        Date newDate = new Date(dateString);
-        LocalDateTime reservationTime = LocalDateTime.of(newDate.getYear(),newDate.getMonth(),newDate.getDay(),currentHour,currentMinute);
+    private LocalDateTime createReservationTime(Date calendarDate, int currentHour, int currentMinute){
+        LocalDateTime reservationTime = LocalDateTime.of(calendarDate.getYear(),calendarDate.getMonth(),calendarDate.getDay(),currentHour,currentMinute);
         return reservationTime;
     }
 }
