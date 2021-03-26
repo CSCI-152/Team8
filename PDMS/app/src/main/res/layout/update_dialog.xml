@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation = "vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="141dp"
+        android:layout_height="41dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="Level of Visit"
+        android:textColor="@color/purple_700"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+
+    <Spinner
+        android:id="@+id/spinnerLevels"
+        android:layout_width="249dp"
+        android:layout_height="20dp"
+        android:entries="@array/levels" />
+
+
+    <EditText
+        android:id="@+id/editTextBill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter new Bill" />
+
+    <Button
+        android:id="@+id/btn_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update Fees" />
+
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancel Fees" />
+
+
+
+
+</LinearLayout>
