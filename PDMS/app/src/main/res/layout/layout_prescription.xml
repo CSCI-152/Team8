@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation = "vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id = "@+id/tvdoctoraddress"
+        android:textSize = "25sp"
+        android:layout_margin = "5dp"
+        android:text = "Doctor Address:"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id = "@+id/tvdoctorname"
+        android:textSize = "25sp"
+        android:layout_margin = "5dp"
+        android:text = "Doctor Name:"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id = "@+id/tvpatientname"
+        android:textSize = "25sp"
+        android:layout_margin = "5dp"
+        android:text = "Patient Name:"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id = "@+id/tvpatientphonenumber"
+        android:textSize = "25sp"
+        android:layout_margin = "5dp"
+        android:text = "Phone Number:"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id = "@+id/tvpatientaddress"
+        android:textSize = "25sp"
+        android:layout_margin = "5dp"
+        android:text = "Address:"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id = "@+id/tvpatientage"
+        android:textSize = "25sp"
+        android:layout_margin = "5dp"
+        android:text = "Age:"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id = "@+id/tvpatientgender"
+        android:textSize = "25sp"
+        android:layout_margin = "5dp"
+        android:text = "Gender:"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id = "@+id/tvpatientprescription"
+        android:textSize = "25sp"
+        android:layout_margin = "5dp"
+        android:text = "Prescription:"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id = "@+id/tvdoctorsignature"
+        android:textSize = "25sp"
+        android:layout_margin = "5dp"
+        android:text = "Signature:"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id = "@+id/tvdate"
+        android:textSize = "25sp"
+        android:layout_margin = "5dp"
+        android:text = "Date:"
+        />
+
+
+
+
+</LinearLayout>
