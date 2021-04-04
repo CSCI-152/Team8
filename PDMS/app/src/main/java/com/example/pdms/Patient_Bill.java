@@ -24,7 +24,9 @@ public class Patient_Bill extends AppCompatActivity {
     private BillAdapter adapter;
     private ArrayList<Fees> list;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference reference = database.getReference("Fees");
+    private DatabaseReference reference = database.getReference("ModifyFees")
+            .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+    Double totalBill =0.00;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,20 +42,33 @@ public class Patient_Bill extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         TotalBill = findViewById(R.id.Total_Bill_Value);
+        TotalBill.setText(totalBill.toString());
 
         reference.addValueEventListener(new ValueEventListener() {
+            double temp;
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Fees feesList = dataSnapshot.getValue(Fees.class);
                     list.add(feesList);
+                    temp = Double.parseDouble(feesList.getBill());
+                    totalBill = totalBill + temp;
                 }
                 adapter.notifyDataSetChanged();
+                TotalBill.setText(totalBill.toString());
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        adapter.setOnItemClickListener(new BillAdapter.OnItemClickListener() {
+            @Override
+            public void deleteItemClick(int position) {
+                list.remove(position);
+                adapter.notifyItemRemoved(position);
             }
         });
 

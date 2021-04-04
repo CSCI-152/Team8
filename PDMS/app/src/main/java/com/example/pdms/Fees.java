@@ -2,17 +2,29 @@ package com.example.pdms;
 
 public class Fees {
 
-    String doctorname,hopistal,price;
+    private String bill, id, level;
 
-    public String getDoctorname() {
-        return doctorname;
+    public String getBill() {
+        return bill;
     }
 
-    public String getHopistal() {
-        return hopistal;
+    public void setBill(String bill) {
+        this.bill = bill;
     }
 
-    public String getPrice() {
-        return price;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 }

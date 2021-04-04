@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="170dp"
+    android:layout_height="160dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="8dp"
     android:padding="10dp"
@@ -20,18 +20,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Doctor: "
+                android:text="Bill: "
                 android:padding="10dp"
                 android:textSize="20sp"/>
 
             <TextView
-                android:id="@+id/doctor_view"
+                android:id="@+id/Bill_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:padding="10dp"
-                android:text="Dr.Doctor"
+                android:text="$100"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -44,45 +44,29 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hospital: "
+                android:text="Level: "
                 android:padding="10dp"
                 android:textSize="20sp"/>
 
             <TextView
-                android:id="@+id/hospital_view"
+                android:id="@+id/Level_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:padding="10dp"
-                android:text="Address"
+                android:text="Low"
                 android:textSize="20sp" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Price: "
-                android:padding="10dp"
-                android:textSize="20sp"/>
-
-            <TextView
-                android:id="@+id/price_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:padding="10dp"
-                android:text="$200"
-                android:textSize="20sp" />
-
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/delete_Item"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="330dp"
+            android:src="@drawable/delete_item"
+            android:layout_marginLeft="330dp" />
 
     </LinearLayout>
 

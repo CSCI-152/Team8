@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,16 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MyViewHolder> 
     ArrayList<Fees> BillList;
     Context context;
 
+    private OnItemClickListener itemClickListener;
+
+    public interface OnItemClickListener {
+        void deleteItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        itemClickListener = listener;
+    }
+
     public BillAdapter(Context context, ArrayList<Fees> BillList){
         this.BillList = BillList;
         this.context = context;
@@ -24,15 +35,14 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MyViewHolder> 
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View list = LayoutInflater.from(context).inflate(R.layout.patient_bill_items, parent, false);
-        return new MyViewHolder(list);
+        return new MyViewHolder(list, itemClickListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Fees fees = BillList.get(position);
-        holder.doctor.setText(fees.doctorname);
-        holder.hospital.setText(fees.hopistal);
-        holder.price.setText(fees.price);
+        holder.bill.setText(fees.getBill());
+        holder.level.setText(fees.getLevel());
     }
 
     @Override
@@ -42,14 +52,27 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MyViewHolder> 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView doctor, hospital,price;
+        TextView bill,level;
+        public ImageView deleteItem;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
 
-            doctor = itemView.findViewById(R.id.doctor_view);
-            hospital = itemView.findViewById(R.id.hospital_view);
-            price = itemView.findViewById(R.id.price_view);
+            bill = itemView.findViewById(R.id.Bill_view);
+            level = itemView.findViewById(R.id.Level_view);
+            deleteItem = itemView.findViewById(R.id.delete_Item);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.deleteItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 }
