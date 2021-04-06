@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class patientChartAdapter extends RecyclerView.Adapter<patientChartAdapter.patientViewHolder> {
@@ -33,7 +34,9 @@ public class patientChartAdapter extends RecyclerView.Adapter<patientChartAdapte
     @Override
     public void onBindViewHolder(@NonNull patientViewHolder holder, int position) {
         Reservation reserve = reservations.get(position);
-        //holder.reserveTime.setText(reservation.getReservationTime().toString());
+
+        //LocalDateTime dateTime = reserve.getReservationTime();
+        //holder.reserveTime.setText(dateTime.toString());
         holder.reserveID.setText(reserve.getReservationID());
         holder.doctorID.setText(reserve.getDoctorID());
         holder.patientID.setText(reserve.getPatientID());
@@ -53,7 +56,7 @@ public class patientChartAdapter extends RecyclerView.Adapter<patientChartAdapte
         public patientViewHolder(@NonNull View itemView) {
             super(itemView);
             reserveID = itemView.findViewById(R.id.reserveID_view);
-            //reserveTime = itemView.findViewById(R.id.reserveDate_view);
+            reserveTime = itemView.findViewById(R.id.reserveDate_view);
             doctorID = itemView.findViewById(R.id.doctorID_view);
             patientID = itemView.findViewById(R.id.patientID_view);
             hospital = itemView.findViewById(R.id.hosptial_view);
