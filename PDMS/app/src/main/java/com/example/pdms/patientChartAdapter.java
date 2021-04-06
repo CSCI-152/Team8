@@ -32,12 +32,12 @@ public class patientChartAdapter extends RecyclerView.Adapter<patientChartAdapte
 
     @Override
     public void onBindViewHolder(@NonNull patientViewHolder holder, int position) {
-        Reservation reservation = reservations.get(position);
+        Reservation reserve = reservations.get(position);
         //holder.reserveTime.setText(reservation.getReservationTime().toString());
-        holder.reserveID.setText(reservation.getReservationID());
-        holder.doctorID.setText(reservation.getDoctorID());
-        holder.patientID.setText(reservation.getPatientID());
-        holder.hospital.setText(reservation.getHospital());
+        holder.reserveID.setText(reserve.getReservationID());
+        holder.doctorID.setText(reserve.getDoctorID());
+        holder.patientID.setText(reserve.getPatientID());
+        holder.hospital.setText(reserve.getHospital());
 
     }
 

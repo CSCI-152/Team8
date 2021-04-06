@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
+    android:layout_height="450dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="8dp"
     android:padding="10dp"
@@ -20,16 +20,25 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Doctor ID: "
+                android:text="Doctor ID "
                 android:padding="10dp"
                 android:textSize="20sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/doctorID_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Doctor"
+                android:text="7tyXiLjNpkYmc4rmlnrVR61euO12"
                 android:padding="10dp"
-                android:textSize="20sp"/>
+                android:layout_marginStart="20dp"
+                android:textSize="20sp"
+                android:layout_marginLeft="20dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -43,11 +52,20 @@
                 android:text="Hospital: "
                 android:padding="10dp"
                 android:textSize="20sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/hosptial_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hospital"
+                android:text="7tyXiLjNpkYmc4rmlnrVR61euO12"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:padding="10dp"
                 android:textSize="20sp"/>
         </LinearLayout>
@@ -63,11 +81,20 @@
                 android:text="Patient ID: "
                 android:padding="10dp"
                 android:textSize="20sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/patientID_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Patient"
+                android:text="7tyXiLjNpkYmc4rmlnrVR61euO12"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:padding="10dp"
                 android:textSize="20sp"/>
         </LinearLayout>
@@ -80,17 +107,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Reserve ID"
-                android:padding="10dp"
-                android:textSize="20sp"/>
-            <TextView
-                android:id="@+id/reserveID_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Reservation"
+                android:text="Reservation ID: "
                 android:padding="10dp"
                 android:textSize="20sp"/>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/reserveID_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7tyXiLjNpkYmc4rmlnrVR61euO12"
+            android:padding="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
