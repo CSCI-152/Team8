@@ -21,6 +21,11 @@ public class Reservation {
         this.DoctorID = Doctor;
         this.Hospital = Hospital;
     }
+
+    public Reservation() {
+
+    }
+
     public String getReservationID() {
         return ReservationID;
     }
