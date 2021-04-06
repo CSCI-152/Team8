@@ -1,6 +1,7 @@
 package com.example.pdms;
 import android.os.Build;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.time.LocalDateTime;
 
@@ -13,6 +14,8 @@ public class Reservation {
     private String DoctorID;
     private String Hospital;
 
+    private Reservation() {}
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public Reservation(Date calendarDate, int currentHour, int currentMinute, String Patient, String Doctor, String Hospital) {
         this.ReservationID = createReservationID(Patient, Doctor);
@@ -21,16 +24,17 @@ public class Reservation {
         this.DoctorID = Doctor;
         this.Hospital = Hospital;
     }
-
-    public Reservation() {
-
-    }
-
     public String getReservationID() {
         return ReservationID;
     }
     public LocalDateTime getReservationTime() {
         return ReservationTime;
+    }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public String getReservationTimeAsString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String formattedReservationTime = ReservationTime.format(formatter);
+        return formattedReservationTime;
     }
     public String getPatientID() {
         return PatientID;
