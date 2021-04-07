@@ -1,19 +1,16 @@
 package com.example.pdms;
 
 import android.app.Activity;
-import android.text.Layout;
+import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import com.google.firebase.database.DatabaseReference;
 
 import java.util.List;
 
@@ -27,7 +24,6 @@ public class FeesList extends ArrayAdapter<Fees> {
         this.feesList = feesList;
     }
 
-
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -37,10 +33,12 @@ public class FeesList extends ArrayAdapter<Fees> {
 
         TextView textViewLevel = (TextView) listViewitem.findViewById(R.id.textViewLevel);
         TextView textViewBill = (TextView) listViewitem.findViewById(R.id.textViewBill);
+        TextView textViewPatientId = (TextView) listViewitem.findViewById(R.id.textViewPatientId);
 
         Fees fees = feesList.get(position);
         textViewLevel.setText(fees.getLevel());
         textViewBill.setText(fees.getBill());
+        textViewPatientId.setText(fees.getPatientId());
 
         return listViewitem;
     }

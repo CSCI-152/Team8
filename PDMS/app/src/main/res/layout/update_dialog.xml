@@ -30,6 +30,13 @@
         android:ems="10"
         android:hint="Enter new Bill" />
 
+    <EditText
+        android:id="@+id/editTextPatientId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter new patientId" />
+
     <Button
         android:id="@+id/btn_update"
         android:layout_width="match_parent"
