@@ -30,10 +30,12 @@
         <activity android:name=".DoctorDashboard" />
         <activity android:name=".AdminDashboard" />
         <activity android:name=".AdminAccountSearch" />
-        <activity android:name=".AdminModifyFees"/>
+        <activity android:name=".AdminModifyFees" />
+        <activity android:name=".PatientSearch" />
         <activity android:name=".PatientSettings" />
         <activity android:name=".PatientAboutUs" />
         <activity android:name=".PatientContactUs" />
+        <activity android:name=".PatientReservation" />
         <activity android:name=".AdminA" />
         <activity android:name=".AdminB" />
         <activity android:name=".DoctorX" />
