@@ -42,6 +42,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Fees fees = BillList.get(position);
         holder.bill.setText(fees.getBill());
+        holder.id.setText(fees.getId());
         holder.level.setText(fees.getLevel());
     }
 
@@ -52,13 +53,14 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MyViewHolder> 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView bill,level;
+        TextView bill,level,id;
         public ImageView deleteItem;
 
         public MyViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
 
             bill = itemView.findViewById(R.id.Bill_view);
+            id = itemView.findViewById(R.id.ID_view);
             level = itemView.findViewById(R.id.Level_view);
             deleteItem = itemView.findViewById(R.id.delete_Item);
 
