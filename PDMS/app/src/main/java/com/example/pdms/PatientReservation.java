@@ -22,9 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -64,6 +62,9 @@ public class PatientReservation extends AppCompatActivity {
         bt_confirm = findViewById(R.id.bt_confirm);
         bt_cancel = findViewById(R.id.bt_cancel);
 
+        Reservation currentReservation = new Reservation(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        currentReservation.setDoctorID(selectedDoctor.getUID());
+
         bt_selectDoctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,7 +77,7 @@ public class PatientReservation extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!txt_doctorEmail.getText().toString().isEmpty()) {
-                    popupPatientSelectHospital(selectedDoctor);
+                    popupPatientSelectHospital(selectedDoctor, currentReservation);
                 }
             }
         });
@@ -84,7 +85,7 @@ public class PatientReservation extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!txt_doctorEmail.getText().toString().isEmpty()) {
-                    popupPatientSelectDate(selectedDoctor);
+                    popupPatientSelectDate(selectedDoctor, currentReservation);
                 }
             }
         });
@@ -92,7 +93,11 @@ public class PatientReservation extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
-                makeCurrentReservation();
+                if(currentReservation.verifyReservation()) {
+                    makeCurrentReservation(currentReservation);
+                } else {
+                    areaMessage();
+                }
             }
         });
         bt_cancel.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +107,7 @@ public class PatientReservation extends AppCompatActivity {
             }
         });
     }
-    private void popupPatientSelectHospital(LocalDoctor selectedDoctor) {
+    private void popupPatientSelectHospital(LocalDoctor selectedDoctor, Reservation currentReservation) {
         //pull list of hospitals correlating to doctor id
         //make hospital class
         //display as listview
@@ -141,6 +146,7 @@ public class PatientReservation extends AppCompatActivity {
         pp_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                currentReservation.setHospital(pp_listView.getItemAtPosition(i).toString());
                 txt_hospitalName.setText(pp_listView.getItemAtPosition(i).toString());
                 if(!txt_hospitalName.getText().toString().isEmpty()) {
                     bt_selectHospital.setText("Change Hospital");
@@ -155,7 +161,7 @@ public class PatientReservation extends AppCompatActivity {
             }
         });
     }
-    private void popupPatientSelectDate(LocalDoctor selectedDoctor) {
+    private void popupPatientSelectDate(LocalDoctor selectedDoctor, Reservation currentReservation) {
         dialogBuilder = new AlertDialog.Builder(PatientReservation.this);
         final View contactPopupView = getLayoutInflater().inflate(R.layout.popup_patient_select_date, null);
         pp_cv_calendarView = (CalendarView) contactPopupView.findViewById(R.id.cv_calendarView);
@@ -167,10 +173,17 @@ public class PatientReservation extends AppCompatActivity {
         dialog = dialogBuilder.create();
         dialog.show();
 
+        pp_cv_calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
+                currentReservation.setReservationDate(year, month, day);
+            }
+        });
         pp_bt_date_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                displayDate(pp_cv_calendarView.getDate(),pp_tp_timePicker.getCurrentHour(),pp_tp_timePicker.getCurrentMinute());
+                currentReservation.setReservationHM(pp_tp_timePicker.getCurrentHour(),pp_tp_timePicker.getCurrentMinute());
+                displayDate(currentReservation);
                 bt_selectDate.setText("Change Date");
                 dialog.dismiss();
             }
@@ -184,49 +197,26 @@ public class PatientReservation extends AppCompatActivity {
         });
     }
 
-    private void displayDate(long dateString, int currentHour, int currentMinute) {
-        Date newDate = new Date(dateString);
-        newDate.setHours(currentHour);
-        newDate.setMinutes(currentMinute);
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm aa");
-        txt_selectedDate.setText(sdf.format(newDate));
+    private void displayDate(Reservation currentReservation) {
+        txt_selectedDate.setText(currentReservation.printReservationDateFormatted());
     }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void makeCurrentReservation(){
-        if(verifyReservation()) {
-            String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            String doctorID = selectedDoctor.getUID();
-            Reservation currentReservation = new Reservation(new Date(pp_cv_calendarView.getDate()),
-                    pp_tp_timePicker.getCurrentHour(),
-                    pp_tp_timePicker.getCurrentMinute(),
-                    userID,
-                    doctorID,
-                    txt_hospitalName.getText().toString());
-            FirebaseDatabase.getInstance().getReference("Reservations")
-                    .child(currentReservation.getReservationID())
-                    .setValue(currentReservation).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(PatientReservation.this, "Reservation made!", Toast.LENGTH_SHORT).show();
-                        //start next task
-                    } else {
-                        Toast.makeText(PatientReservation.this, "There was an error", Toast.LENGTH_SHORT).show();
-                    }
+    private void makeCurrentReservation(Reservation currentReservation) {
+        currentReservation.finalizeReservation();
+        FirebaseDatabase.getInstance().getReference("Reservations")
+                .child(currentReservation.getReservationID())
+                .setValue(currentReservation).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(PatientReservation.this, "Reservation made!", Toast.LENGTH_SHORT).show();
+                    //start next task
+                } else {
+                    Toast.makeText(PatientReservation.this, "There was an error", Toast.LENGTH_SHORT).show();
                 }
-            });
-        }
+            }
+        });
     }
-    private Boolean verifyReservation() {
-        Boolean doctorCheck = !selectedDoctor.getUID().isEmpty();
-        Boolean hospitalCheck = !txt_hospitalName.getText().toString().isEmpty();
-        Boolean dateCheck = !txt_selectedDate.getText().toString().isEmpty();
-        if(doctorCheck && hospitalCheck && dateCheck) {
-            return true;
-        } else {
-            Toast.makeText(PatientReservation.this, "Please fill all areas!", Toast.LENGTH_SHORT).show();
-            return false;
-        }
+    private void areaMessage() {
+        Toast.makeText(PatientReservation.this, "Please fill all areas!", Toast.LENGTH_SHORT).show();
     }
 }
