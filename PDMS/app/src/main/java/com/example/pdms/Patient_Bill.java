@@ -77,6 +77,19 @@ public class Patient_Bill extends AppCompatActivity {
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
 
+                Fees feesList = snapshot.getValue(Fees.class);
+                assert feesList != null;
+                if(feesList.getPatientId()
+                        .equals(Objects.requireNonNull
+                                (FirebaseAuth.getInstance().getCurrentUser()).getUid()))
+                {
+                    list.remove(feesList);
+                    double temp = Double.parseDouble(feesList.getBill());
+                    totalBill = totalBill - temp;
+                    TotalBill.setText(totalBill.toString());
+                }
+                adapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -87,14 +100,6 @@ public class Patient_Bill extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-
-        adapter.setOnItemClickListener(new BillAdapter.OnItemClickListener() {
-            @Override
-            public void deleteItemClick(int position) {
-                list.remove(position);
-                adapter.notifyItemRemoved(position);
             }
         });
 

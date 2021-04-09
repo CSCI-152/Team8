@@ -1,5 +1,6 @@
 package com.example.pdms;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,32 +11,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MyViewHolder> {
     ArrayList<Fees> BillList;
     Context context;
 
-    private OnItemClickListener itemClickListener;
-
-    public interface OnItemClickListener {
-        void deleteItemClick(int position);
-    }
-
-    public void setOnItemClickListener(OnItemClickListener listener){
-        itemClickListener = listener;
-    }
-
     public BillAdapter(Context context, ArrayList<Fees> BillList){
         this.BillList = BillList;
         this.context = context;
     }
 
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View list = LayoutInflater.from(context).inflate(R.layout.patient_bill_items, parent, false);
-        return new MyViewHolder(list, itemClickListener);
+        return new MyViewHolder(list);
     }
 
     @Override
@@ -44,6 +38,20 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MyViewHolder> 
         holder.bill.setText(fees.getBill());
         holder.id.setText(fees.getId());
         holder.level.setText(fees.getLevel());
+
+        /* //may not need to delete bill by patient
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                String BillId = fees.getId();
+                FirebaseDatabase.getInstance().getReference("Bill")
+                        .child(BillId).setValue(null);
+
+                return true;
+            }
+        });
+        */
+
     }
 
     @Override
@@ -56,7 +64,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MyViewHolder> 
         TextView bill,level,id;
         public ImageView deleteItem;
 
-        public MyViewHolder(@NonNull View itemView, OnItemClickListener listener) {
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             bill = itemView.findViewById(R.id.Bill_view);
@@ -64,17 +72,6 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MyViewHolder> 
             level = itemView.findViewById(R.id.Level_view);
             deleteItem = itemView.findViewById(R.id.delete_Item);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(listener != null){
-                        int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION){
-                            listener.deleteItemClick(position);
-                        }
-                    }
-                }
-            });
         }
     }
 }
