@@ -35,7 +35,7 @@
             android:fontFamily="sans-serif-condensed-medium"
             android:padding="8dp"
             android:text="This is is a mobile application that will help patients schedule their appointments with doctors online. In order to accomplish this, Team 8 used Java and XML code on Android Studio 4.1.0. To learn more from us, follow us on social media like Instagram, Facebook, etc."
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="12dp" />
 
         <ImageView
