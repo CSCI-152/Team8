@@ -61,5 +61,6 @@ public class Patient_Chart extends AppCompatActivity {
 
             }
         });
+
     }
 }

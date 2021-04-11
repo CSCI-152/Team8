@@ -11,6 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -43,6 +46,16 @@ public class patientChartAdapter extends RecyclerView.Adapter<patientChartAdapte
         holder.patientID.setText(reserve.getPatientID());
         holder.hospital.setText(reserve.getHospital());
 
+        holder.Decline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String reserveID = reserve.getReservationID();
+                FirebaseDatabase.getInstance().getReference("Reservations")
+                        .child(reserveID).setValue(null);
+
+            }
+        });
+
     }
 
     @Override
@@ -66,6 +79,10 @@ public class patientChartAdapter extends RecyclerView.Adapter<patientChartAdapte
 
             Accept = itemView.findViewById(R.id.Accept_Reservation);
             Decline = itemView.findViewById(R.id.Decline_Reservation);
+
         }
+
+
+
     }
 }
