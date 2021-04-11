@@ -27,6 +27,7 @@
         </activity>
         <activity android:name=".PatientDashboard" />
         <activity android:name=".DoctorPrescription"/>
+        <activity android:name = ".DisplayPrescription"/>
         <activity android:name=".DoctorDashboard" />
         <activity android:name=".AdminDashboard" />
         <activity android:name=".AdminAccountSearch" />
