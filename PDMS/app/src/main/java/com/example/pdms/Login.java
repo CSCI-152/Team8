@@ -72,9 +72,6 @@ public class Login extends AppCompatActivity {
             }
         });
     }
-    private boolean isEmpty(EditText text) {
-        return text.getText().toString().trim().length() == 0;
-    }
 
     private void userLogin(String email, String password) {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
