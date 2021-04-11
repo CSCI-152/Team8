@@ -8,46 +8,78 @@ import java.time.LocalDateTime;
 import androidx.annotation.RequiresApi;
 
 public class Reservation {
-    private String ReservationID;
-    private LocalDateTime ReservationTime;
-    private String PatientID;
-    private String DoctorID;
-    private String Hospital;
+    private String reservationID;
+    private String reservationDate;
+    private String reservationHM;
+    private String patientID;
+    private String doctorID;
+    private String hospital;
 
-    private Reservation() {}
+    public Reservation() {}
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public Reservation(Date calendarDate, int currentHour, int currentMinute, String Patient, String Doctor, String Hospital) {
-        this.ReservationID = createReservationID(Patient, Doctor);
-        this.ReservationTime = createReservationTime(calendarDate,currentHour,currentMinute);
-        this.PatientID = Patient;
-        this.DoctorID = Doctor;
-        this.Hospital = Hospital;
+    public Reservation(String reservationID, String reservationDate, String reservationHM, String patientID, String doctorID, String hospital) {
+        this.reservationID = reservationID;
+        this.reservationDate = reservationDate;
+        this.reservationHM = reservationHM;
+        this.patientID = patientID;
+        this.doctorID = doctorID;
+        this.hospital = hospital;
+    }
+
+    public Reservation(String Patient) {
+        this.patientID = Patient;
     }
     public String getReservationID() {
-        return ReservationID;
-    }
-    public LocalDateTime getReservationTime() {
-        return ReservationTime;
-    }
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public String getReservationTimeAsString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        String formattedReservationTime = ReservationTime.format(formatter);
-        return formattedReservationTime;
-    }
-    public String getPatientID() {
-        return PatientID;
-    }
-    public String getDoctorID() {
-        return DoctorID;
-    }
-    public String getHospital() {
-        return Hospital;
+        return reservationID;
     }
 
-    public void changeDate(LocalDateTime newDate) {
-        this.ReservationTime = newDate;
+    public void setDoctorID(String doctorID) {
+        this.doctorID = doctorID;
+    }
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
+    }
+    public void setReservationDate(int year, int month, int day) {
+        this.reservationDate = year + "/" + String.format("%02d",month) + "/" + String.format("%02d",day);
+    }
+    public void setReservationHM(int hour, int minute) {
+        this.reservationHM = String.format("%02d",hour) + ":" + String.format("%02d",minute); //pad with '0' so that '7' will show up as '07'
+    }
+
+    public String getPatientID() {
+        return patientID;
+    }
+    public String getDoctorID() {
+        return doctorID;
+    }
+    public String getHospital() {
+        return hospital;
+    }
+
+    public String getReservationDate() {
+        return reservationDate;
+    }
+    public String getReservationHM() {
+        return reservationHM;
+    }
+    public String printReservationDateFormatted() {
+        //returns date as dd/mm/yyyy, hh:mm
+        String initYear = this.getReservationDate();
+        String returnDate = initYear.substring(5,7) + "/" +  // mm
+                initYear.substring(8,10) + "/" + // dd
+                initYear.substring(0,4) + ", " + // yyyy
+                this.getReservationHM();         // hh:mm
+        return returnDate;
+    }
+
+    public Boolean verifyReservation() {
+        if(getHospital() == null || getReservationDate() == null || getReservationHM() == null) {
+            return false;
+        }
+        return true;
+    }
+    public void finalizeReservation() {
+        this.reservationID = createReservationID(this.patientID, this.doctorID);
     }
     private String createReservationID(String userID, String doctorID){
         String reservationID = "";
@@ -56,9 +88,6 @@ public class Reservation {
         }
         return reservationID;
     }
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private LocalDateTime createReservationTime(Date calendarDate, int currentHour, int currentMinute){
-        LocalDateTime reservationTime = LocalDateTime.of(calendarDate.getYear(),calendarDate.getMonth(),calendarDate.getDay(),currentHour,currentMinute);
-        return reservationTime;
-    }
+
+
 }

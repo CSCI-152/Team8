@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,9 +36,9 @@ public class patientChartAdapter extends RecyclerView.Adapter<patientChartAdapte
     public void onBindViewHolder(@NonNull patientViewHolder holder, int position) {
         Reservation reserve = reservations.get(position);
 
-        //LocalDateTime dateTime = reserve.getReservationTime();
-        //holder.reserveTime.setText(dateTime.toString());
         holder.reserveID.setText(reserve.getReservationID());
+        holder.reserveDate.setText(reserve.getReservationDate());
+        holder.reserveDate.setText(reserve.getReservationHM());
         holder.doctorID.setText(reserve.getDoctorID());
         holder.patientID.setText(reserve.getPatientID());
         holder.hospital.setText(reserve.getHospital());
@@ -51,15 +52,20 @@ public class patientChartAdapter extends RecyclerView.Adapter<patientChartAdapte
 
     public static  class patientViewHolder extends RecyclerView.ViewHolder{
 
-        TextView reserveID, reserveTime, doctorID, patientID, hospital;
+        TextView reserveID, reserveDate,reserveTime, doctorID, patientID, hospital;
+        Button Accept, Decline;
 
         public patientViewHolder(@NonNull View itemView) {
             super(itemView);
             reserveID = itemView.findViewById(R.id.reserveID_view);
-            reserveTime = itemView.findViewById(R.id.reserveDate_view);
+            reserveDate = itemView.findViewById(R.id.reserveDate_view);
+            reserveTime = itemView.findViewById(R.id.reserveTime_view);
             doctorID = itemView.findViewById(R.id.doctorID_view);
             patientID = itemView.findViewById(R.id.patientID_view);
             hospital = itemView.findViewById(R.id.hosptial_view);
+
+            Accept = itemView.findViewById(R.id.Accept_Reservation);
+            Decline = itemView.findViewById(R.id.Decline_Reservation);
         }
     }
 }
