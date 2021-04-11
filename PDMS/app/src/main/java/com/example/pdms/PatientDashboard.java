@@ -83,19 +83,15 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
             startActivity(toProfile);
         }
         if(id == R.id.setting){
-            //Intent toProfile = new Intent(this, PatientSettings.class);
-            //startActivity(toProfile);
             Toast.makeText(this, "Setting", Toast.LENGTH_SHORT).show();
+
         }
-        if(id == R.id.contactus){
-            //Intent toProfile = new Intent(this, PatientContactUs.class);
-            //startActivity(toProfile);
+        if(id == R.id.contactus) {
             Toast.makeText(this, "Contact Us", Toast.LENGTH_SHORT).show();
         }
         if(id == R.id.aboutus){
-            //Intent toProfile = new Intent(this, PatientAboutUs.class);
-            //startActivity(toProfile);
             Toast.makeText(this, "About us", Toast.LENGTH_SHORT).show();
+
         }
         if(id == R.id.logout){
             FirebaseAuth.getInstance().signOut();
