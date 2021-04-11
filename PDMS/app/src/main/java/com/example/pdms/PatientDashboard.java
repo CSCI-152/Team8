@@ -95,13 +95,16 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
             startActivity(toProfile);
         }
         if(id == R.id.setting){
-            Toast.makeText(this, "Setting", Toast.LENGTH_SHORT).show();
+            Intent toSettings = new Intent(this, PatientSettings.class);
+            startActivity(toSettings);
         }
         if(id == R.id.contactus) {
-            Toast.makeText(this, "Contact Us", Toast.LENGTH_SHORT).show();
+            Intent toContactUs = new Intent(this, PatientContactUs.class);
+            startActivity(toContactUs);
         }
         if(id == R.id.aboutus){
-            Toast.makeText(this, "About us", Toast.LENGTH_SHORT).show();
+            Intent toAboutUs = new Intent(this, PatientAboutUs.class);
+            startActivity(toAboutUs);
 
         }
         if(id == R.id.logout){

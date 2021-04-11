@@ -55,7 +55,7 @@ Sacramento, CA 95828" />
         android:layout_below="@+id/btn_DoctorX"
         android:layout_marginTop="11dp"
         android:background="@color/white"
-        android:text="Dr.Goya" />
+        android:text="Dr. Goya" />
 
     <TextView
         android:layout_width="230dp"
