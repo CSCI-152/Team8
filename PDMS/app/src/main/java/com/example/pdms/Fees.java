@@ -1,6 +1,7 @@
 package com.example.pdms;
 
 public class Fees {
+
     private String bill, id, level, patientId;
 
     public Fees(String bill, String id, String level, String patientId) {
