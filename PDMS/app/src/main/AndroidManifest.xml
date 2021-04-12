@@ -14,7 +14,7 @@
         <meta-data
             android:name="firebase_inapp_message_auto_data_collection_enabled"
             android:value="false" />
-        <activity android:name=".Forgot_Password" />
+        <activity android:name=".Patient_Bill"/>
         <activity
             android:name=".Patient_Profile"
             android:parentActivityName=".PatientDashboard">
@@ -31,10 +31,19 @@
             </intent-filter>
         </activity>
         <activity android:name=".PatientDashboard" />
+        <activity android:name=".DoctorPrescription" />
+        <activity android:name=".PatientSettings"/>
+        <activity android:name=".PatientAboutUs"/>
+        <activity android:name=".PatientContactUs"/>
+        <activity android:name=".Forgot_Password" />
         <activity android:name=".DoctorPrescription"/>
+        <activity android:name=".DisplayPrescription"/>
         <activity android:name=".DoctorDashboard" />
+        <activity android:name=".DoctorX" />
+        <activity android:name=".DoctorY" />
         <activity android:name=".AdminDashboard" />
         <activity android:name=".AdminAccountSearch" />
+        <activity android:name=".Calendar" />
         <activity android:name=".PatientSearch" />
         <activity android:name=".PatientSettings" />
         <activity android:name=".PatientAboutUs" />
@@ -42,8 +51,6 @@
         <activity android:name=".PatientReservation" />
         <activity android:name=".AdminA" />
         <activity android:name=".AdminB" />
-        <activity android:name=".DoctorX" />
-        <activity android:name=".DoctorY" />
     </application>
 
 </manifest>
