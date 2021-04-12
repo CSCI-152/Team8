@@ -1,19 +1,31 @@
 package com.example.pdms;
 
 public class Fees {
-    private String id;
-    private String patientId;
-    private String level;
-    private String bill;
 
-    public Fees() {
+private String bill, id, level, patientId;
 
+    public Fees(String bill, String id, String level, String patientId) {
+        this.bill = bill;
+        this.id = id;
+        this.level = level;
+        this.patientId = patientId;
     }
 
-    public Fees(String id, String patientId, String level, String bill) {
-        this.id = id;
+    public Fees(){}
+
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(String patientId) {
         this.patientId = patientId;
-        this.level = level;
+    }
+
+    public String getBill() {
+        return bill;
+    }
+
+    public void setBill(String bill) {
         this.bill = bill;
     }
 
