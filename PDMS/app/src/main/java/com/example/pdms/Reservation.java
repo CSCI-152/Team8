@@ -52,4 +52,6 @@ public class Reservation {
         LocalDateTime reservationTime = LocalDateTime.of(calendarDate.getYear(),calendarDate.getMonth(),calendarDate.getDay(),currentHour,currentMinute);
         return reservationTime;
     }
+
 }
+

@@ -1,5 +1,4 @@
 package com.example.pdms;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -22,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class DoctorPrescription extends AppCompatActivity {
     EditText editTextDoctorName, editTextDoctorAddress, editTextPatientName, editTextPhoneNumber, editTextAddress, editTextAge, editTextGender, editTextNote, editTextSignature, editTextDate;
-    Button btnInsertPrescription;
+    Button btnInsertPrescription, btnDisplayPrescriptions;
     DatabaseReference prescriptionDbRef;
     Prescription prescription;
 
@@ -42,8 +41,16 @@ public class DoctorPrescription extends AppCompatActivity {
         editTextSignature = (EditText)findViewById(R.id.editTextSignature);
         editTextDate = (EditText)findViewById(R.id.editTextDate);
         btnInsertPrescription = (Button)findViewById(R.id.btn_add);
+        btnDisplayPrescriptions = (Button)findViewById(R.id.btn_display);
         prescription = new Prescription();
         prescriptionDbRef = FirebaseDatabase.getInstance().getReference().child("Prescriptions");
+
+        btnDisplayPrescriptions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DoctorPrescription.this, DisplayPrescription.class));
+            }
+        });
 
         btnInsertPrescription.setOnClickListener(new View.OnClickListener() {
             @Override

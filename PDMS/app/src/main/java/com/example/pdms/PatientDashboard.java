@@ -38,16 +38,23 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
         btn_calendarandreservation = (Button)findViewById(R.id.buttonCALENDARANDRESERVATION);
         btn_search = (Button)findViewById(R.id.buttonSEARCH);
 
-        btn_calendarandreservation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(PatientDashboard.this, "RESERVE APPOINTMENT", Toast.LENGTH_SHORT).show();
-            }
-        });
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(PatientDashboard.this, "GO TO SEARCH", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(PatientDashboard.this, "GO TO SEARCH", Toast.LENGTH_SHORT).show();
+                Intent patientSearch = new Intent(PatientDashboard.this, PatientSearch.class);
+                startActivity(patientSearch);
+            }
+        });
+        btn_calendarandreservation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(PatientDashboard.this, "RESERVE APPOINTMENT", Toast.LENGTH_SHORT).show();
+                Intent patientReservation = new Intent(getBaseContext(), PatientReservation.class);
+                LocalDoctor blankDoctor = new LocalDoctor("","");
+                patientReservation.putExtra("LocalDoctor", blankDoctor);
+                startActivity(patientReservation);
+
             }
         });
 
@@ -76,13 +83,18 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
             startActivity(toProfile);
         }
         if(id == R.id.setting){
-            Toast.makeText(this, "Setting", Toast.LENGTH_SHORT).show();
+            Intent toSettings = new Intent(this, PatientSettings.class);
+            startActivity(toSettings);
+
         }
-        if(id == R.id.contactus){
-            Toast.makeText(this, "Contact Us", Toast.LENGTH_SHORT).show();
+        if(id == R.id.contactus) {
+            Intent toContactUs = new Intent(this, PatientContactUs.class);
+            startActivity(toContactUs);
         }
         if(id == R.id.aboutus){
-            Toast.makeText(this, "About Us", Toast.LENGTH_SHORT).show();
+            Intent toAboutUs = new Intent(this, PatientAboutUs.class);
+            startActivity(toAboutUs);
+
         }
         if(id == R.id.logout){
             FirebaseAuth.getInstance().signOut();
