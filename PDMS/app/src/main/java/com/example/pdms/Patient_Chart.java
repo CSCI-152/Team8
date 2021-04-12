@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -51,7 +52,11 @@ public class Patient_Chart extends AppCompatActivity {
                 for(DataSnapshot db: snapshot.getChildren())
                 {
                     Reservation reserve = db.getValue(Reservation.class);
-                    list.add(reserve);
+                    if(reserve.getDoctorID().equals(FirebaseAuth.getInstance().getCurrentUser()
+                    .getUid()))
+                    {
+                        list.add(reserve);
+                    }
                 }
                 adapter.notifyDataSetChanged();
             }
