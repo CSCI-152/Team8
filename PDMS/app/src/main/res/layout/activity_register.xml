@@ -67,25 +67,12 @@
         app:layout_constraintStart_toEndOf="@+id/RegisterDoctor"
         app:layout_constraintTop_toBottomOf="@+id/UserTypeTXT" />
 
-    <EditText
-        android:id="@+id/RegisterKey"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:hint="Enter Key"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RegisterDoctor" />
-
     <TextView
         android:id="@+id/UserTypeTXT"
         android:layout_width="284dp"
         android:layout_height="63dp"
         android:layout_marginTop="24dp"
-        android:text="If registering as doctor or admin, check the box below and enter the key. Else leave empty."
+        android:text="If registering as doctor or admin, check the box below. Else leave empty."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,9 +82,9 @@
         android:id="@+id/RegisterBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:text="Register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RegisterKey" />
+        app:layout_constraintTop_toBottomOf="@+id/RegisterDoctor" />
 </androidx.constraintlayout.widget.ConstraintLayout>
