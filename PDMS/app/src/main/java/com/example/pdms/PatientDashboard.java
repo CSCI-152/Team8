@@ -5,7 +5,9 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,18 +15,28 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.inappmessaging.FirebaseInAppMessaging;
 
 public class PatientDashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     Button btn_calendarandreservation,btn_search;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_dashboard);
+
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences("PREFS", Context.MODE_PRIVATE);
+        //get the shared preference we save value in
+        FirebaseInAppMessaging.getInstance().setAutomaticDataCollectionEnabled(true);
+        //enable inAppMessage to send message
+        Boolean isNotification = preferences.getBoolean("discount",false);
+        if(isNotification) {//if discount notification is set to true call the notification
+            addNotifcationEvent();//log discount notification
+        }
 
         drawerLayout = findViewById(R.id.drawer_layout);
         drawerToggle = new ActionBarDrawerToggle(PatientDashboard.this,drawerLayout,R.string.open,R.string.close);
@@ -86,7 +98,6 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
         if(id == R.id.setting){
             Intent toSettings = new Intent(this, PatientSettings.class);
             startActivity(toSettings);
-
         }
         if(id == R.id.contactus) {
             Intent toContactUs = new Intent(this, PatientContactUs.class);
@@ -104,4 +115,12 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
         }
         return false;
     }
+
+    private void addNotifcationEvent(){
+        FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        Bundle bundle = new Bundle();
+        bundle.putString("title", "Discount Notification");//set the title
+        firebaseAnalytics.logEvent("discount_notification", bundle);//set the event
+    }
+
 }

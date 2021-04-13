@@ -39,6 +39,7 @@ public class DoctorDashboard extends AppCompatActivity {
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent Doctor_logout = new Intent(DoctorDashboard.this, Login.class);
                 FirebaseAuth.getInstance().signOut();
                 startActivity(Doctor_logout);
