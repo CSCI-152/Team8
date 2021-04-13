@@ -36,6 +36,9 @@
         <activity android:name=".DoctorDashboard" />
         <activity android:name=".DoctorX" />
         <activity android:name=".DoctorY" />
+        <activity android:name=".AdminDashboard" />
+        <activity android:name=".AdminAccountSearch"/>
+        <activity android:name=".AdminModifyFees"/>
         <activity android:name=".Calendar" />
         <activity android:name=".Patient_Bill"/>
         <activity android:name=".PatientDashboard" />
