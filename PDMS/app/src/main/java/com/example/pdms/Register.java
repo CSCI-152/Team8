@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Register extends AppCompatActivity {
 
     FirebaseAuth mAuth;
-    EditText RegEmail, RegPass, RegKey;
+    EditText RegEmail, RegPass;
     CheckBox DoctorBox, AdminBox;
     Button RegBTN;
     String isUser;
@@ -35,7 +35,6 @@ public class Register extends AppCompatActivity {
 
         RegEmail = findViewById(R.id.RegisterEmail);
         RegPass = findViewById(R.id.RegisterPassword);
-        RegKey = findViewById(R.id.RegisterKey);
 
         DoctorBox = findViewById(R.id.RegisterDoctor);
         AdminBox = findViewById(R.id.RegisterAdmin);
@@ -47,9 +46,8 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 String Email = RegEmail.getText().toString();
                 String Password = RegPass.getText().toString();
-                String Key = RegKey.getText().toString();
 
-                isType(Key);
+                isType();
 
                 if(Email.isEmpty() || Password.isEmpty()){
                     Toast.makeText(Register.this, "Please fill in Email and Password", Toast.LENGTH_SHORT).show();
@@ -78,14 +76,14 @@ public class Register extends AppCompatActivity {
 
     }
 
-    private void isType(String Key){
-        if(DoctorBox.isChecked() && Key.equals("1")){
+    private void isType(){
+        if(DoctorBox.isChecked()){
             isUser = "Doctors";
         }
-        if(AdminBox.isChecked() && Key.equals("2")){
+        if(AdminBox.isChecked()){
             isUser = "Admins";
         }
-        if(!AdminBox.isChecked() && !DoctorBox.isChecked() && Key.isEmpty()){
+        if(!AdminBox.isChecked() && !DoctorBox.isChecked()){
             isUser = "Patients";
         }
     };

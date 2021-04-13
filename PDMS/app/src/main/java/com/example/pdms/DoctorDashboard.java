@@ -30,7 +30,10 @@ public class DoctorDashboard extends AppCompatActivity {
         btn_chart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DoctorDashboard.this, "GO TO CHART", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(DoctorDashboard.this, "GO TO CHART", Toast.LENGTH_SHORT).show();
+                Intent toChart = new Intent(DoctorDashboard.this, Patient_Chart.class);
+                startActivity(toChart);
+
             }
         });
         btn_logout.setOnClickListener(new View.OnClickListener() {
