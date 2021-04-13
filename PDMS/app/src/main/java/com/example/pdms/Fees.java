@@ -37,13 +37,6 @@ private String bill, id, level, patientId;
         this.id = id;
     }
 
-    public String getPatientId() {
-        return patientId;
-    }
-
-    public void setPatientId(String patientId) {
-        this.patientId = patientId;
-    }
 
     public String getLevel() {
         return level;
@@ -53,11 +46,5 @@ private String bill, id, level, patientId;
         this.level = level;
     }
 
-    public String getBill() {
-        return bill;
-    }
 
-    public void setBill(String bill) {
-        this.bill = bill;
-    }
 }
