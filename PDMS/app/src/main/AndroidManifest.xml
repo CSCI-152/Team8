@@ -25,11 +25,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PatientDashboard" />
-        <activity android:name=".DoctorPrescription" />
-        <activity android:name=".PatientSettings"/>
-        <activity android:name=".PatientAboutUs"/>
-        <activity android:name=".PatientContactUs"/>
         <activity android:name=".Forgot_Password" />
         <activity android:name=".DoctorPrescription"/>
         <activity android:name=".DisplayPrescription"/>
@@ -39,6 +34,7 @@
         <activity android:name=".AdminDashboard" />
         <activity android:name=".AdminAccountSearch" />
         <activity android:name=".Calendar" />
+        <activity android:name=".PatientDashboard" />
         <activity android:name=".PatientSearch" />
         <activity android:name=".PatientSettings" />
         <activity android:name=".PatientAboutUs" />
