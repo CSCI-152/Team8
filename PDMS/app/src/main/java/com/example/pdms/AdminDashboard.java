@@ -31,7 +31,8 @@ public class AdminDashboard extends AppCompatActivity {
         btn_bill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(AdminDashboard.this, "MODIFY BILL", Toast.LENGTH_SHORT).show();
+                Intent toModFees = new Intent(AdminDashboard.this, AdminModifyFees.class);
+                startActivity(toModFees);
             }
         });
         btn_logout.setOnClickListener(new View.OnClickListener() {
