@@ -56,7 +56,7 @@ public class AdminModifyFees extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Fees fees = feesList.get(position);
-                showUpdateDialog(fees.getId(), fees.getPatientId(), fees.getBill());
+                showUpdateDialog(fees.getBill(), fees.getId(), fees.getPatientId());
 
                 return false;
             }
@@ -145,7 +145,7 @@ public class AdminModifyFees extends AppCompatActivity {
                     return;
                 }
 
-                updateFees(id, patientId, level, bill);
+                updateFees(bill, patientId, level, id);
 
                 alertDialog.dismiss();
 
@@ -164,7 +164,7 @@ public class AdminModifyFees extends AppCompatActivity {
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Bill").child(id);
 
-        Fees fees = new Fees(id, patientId, bill, level);
+        Fees fees = new Fees(bill, id, patientId, level);
 
         databaseReference.setValue(fees);
 
@@ -180,7 +180,7 @@ public class AdminModifyFees extends AppCompatActivity {
         String bill = editTextBill.getText().toString().trim();
         if (!TextUtils.isEmpty(bill) && !TextUtils.isEmpty(patientId)) {
             String id = databaseReference.push().getKey();
-            Fees fees = new Fees(id, patientId,level, bill);
+            Fees fees = new Fees(bill,patientId,level, id);
             databaseReference.child(id).setValue(fees);
             Toast.makeText(this, "Fees added", Toast.LENGTH_LONG).show();
         } else {

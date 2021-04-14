@@ -2,16 +2,24 @@ package com.example.pdms;
 
 public class Fees {
 
-private String bill, id, level, patientId;
+private String id, patientId, level, bill;
 
-    public Fees(String bill, String id, String level, String patientId) {
+    public Fees(String bill, String patientId, String level, String id) {
         this.bill = bill;
-        this.id = id;
-        this.level = level;
         this.patientId = patientId;
+        this.level = level;
+        this.id = id;
     }
 
     public Fees(){}
+
+    public String getBill() {
+        return bill;
+    }
+
+    public void setBill(String bill) {
+        this.bill = bill;
+    }
 
     public String getPatientId() {
         return patientId;
@@ -21,12 +29,12 @@ private String bill, id, level, patientId;
         this.patientId = patientId;
     }
 
-    public String getBill() {
-        return bill;
+    public String getLevel() {
+        return level;
     }
 
-    public void setBill(String bill) {
-        this.bill = bill;
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     public String getId() {
@@ -37,14 +45,6 @@ private String bill, id, level, patientId;
         this.id = id;
     }
 
-
-    public String getLevel() {
-        return level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level;
-    }
 
 
 }
