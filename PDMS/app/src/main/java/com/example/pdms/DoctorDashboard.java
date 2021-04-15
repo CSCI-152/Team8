@@ -24,7 +24,8 @@ public class DoctorDashboard extends AppCompatActivity {
         btn_appointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DoctorDashboard.this, "GO TO APPOINTMENT", Toast.LENGTH_SHORT).show();
+                Intent doctorAppointment = new Intent(DoctorDashboard.this, DoctorAppointments.class);
+                startActivity(doctorAppointment);
             }
         });
         btn_chart.setOnClickListener(new View.OnClickListener() {
