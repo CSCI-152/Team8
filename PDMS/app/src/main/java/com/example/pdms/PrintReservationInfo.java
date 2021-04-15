@@ -40,21 +40,19 @@ public class PrintReservationInfo {
     }
     public void retrievePatientName(Reservation thisReservation, ArrayList<String> list, ArrayAdapter adapter) {
         String patientID = thisReservation.getPatientID();
+        String date = printDate(thisReservation);
+        String hospitalName = thisReservation.getHospital();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Patients").child(patientID);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String date = printDate(thisReservation);
-                    String hospitalName = thisReservation.getHospital();
                     list.add(snapshot.getValue().toString() + " | " + hospitalName + " | " + date);
                     adapter.notifyDataSetChanged();
                 }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                String date = printDate(thisReservation);
-                String hospitalName = thisReservation.getHospital();
                 list.add("name error" + " | " + hospitalName + " | " + date);
                 adapter.notifyDataSetChanged();
             }

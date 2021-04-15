@@ -6,8 +6,10 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,7 +47,9 @@ public class DoctorAppointments extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Reservation newReservation = snapshot.getValue(Reservation.class);
-                    reservationPrint.retrievePatientName(newReservation, list, adapter);
+                    if(newReservation.getDoctorID().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                         reservationPrint.retrievePatientName(newReservation, list, adapter);
+                    }
                 }
             }
             @Override
