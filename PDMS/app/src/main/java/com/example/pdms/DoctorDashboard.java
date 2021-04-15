@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class DoctorDashboard extends AppCompatActivity {
-    Button btn_appointment, btn_chart, btn_medication, btn_logout;
+    Button btn_appointment, btn_chart, btn_medication, btn_logout, btn_hospital;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +20,7 @@ public class DoctorDashboard extends AppCompatActivity {
         btn_chart = (Button)findViewById(R.id.buttonCHART);
         btn_logout = (Button)findViewById(R.id.buttonLOGOUT);
         btn_medication = (Button)findViewById(R.id.buttonMEDICATION);
+        btn_hospital = (Button)findViewById(R.id.buttonHospital);
 
         btn_appointment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,5 +54,14 @@ public class DoctorDashboard extends AppCompatActivity {
                 startActivity(Doctor_prescription);
             }
         });
+
+        btn_hospital.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Doctor_Hospital = new Intent(DoctorDashboard.this, DoctorHospital.class);
+                startActivity(Doctor_Hospital);
+            }
+        });
+
     }
 }
