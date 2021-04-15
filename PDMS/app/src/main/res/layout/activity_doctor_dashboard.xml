@@ -81,12 +81,12 @@
                                 android:layout_height = "match_parent">
 
                                 <ImageView
-                                    android:layout_width = "60dp"
-                                    android:id = "@+id/imageView1"
-                                    android:layout_height = "60dp"
-                                    android:src = "@drawable/appointment"
-                                    android:layout_centerInParent = "true"
-                                    />
+                                    android:id="@+id/imageView1"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:layout_centerInParent="true"
+                                    android:src="@drawable/appointment" />
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -201,6 +201,48 @@
                         android:orientation="horizontal"
                         android:layout_marginBottom="10dp"
                         >
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width = "0dp"
+                            android:layout_height = "match_parent"
+                            android:layout_weight = "1"
+                            android:gravity = "center"
+                            android:layout_marginRight="6dp"
+                            android:orientation = "vertical">
+
+                            <RelativeLayout
+                                android:layout_width = "match_parent"
+                                android:layout_height = "match_parent">
+
+                                <ImageView
+                                    android:id="@+id/imageView5"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:layout_centerInParent="true"
+                                    android:src="@drawable/hospital" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="HOSPITAL"
+                                    android:textSize="18sp"
+                                    android:layout_below="@+id/imageView5"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"/>
+
+                                <Button
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:id="@+id/buttonHospital"
+                                    android:background="@android:color/transparent"
+
+                                    />
+
+                            </RelativeLayout>
+
+
+                        </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
                             android:layout_width = "0dp"

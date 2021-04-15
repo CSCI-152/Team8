@@ -2,7 +2,7 @@
     <string name="app_name">PDMS</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
-    <array name = "levels">
+    <array name="levels">
         <item>Low</item>
         <item>Medium</item>
         <item>High</item>
