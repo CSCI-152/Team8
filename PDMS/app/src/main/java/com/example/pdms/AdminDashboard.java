@@ -23,7 +23,6 @@ public class AdminDashboard extends AppCompatActivity {
         btn_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(AdminDashboard.this, "GO TO APPOINTMENT", Toast.LENGTH_SHORT).show();
                 Intent toAdminSearch = new Intent(AdminDashboard.this, AdminAccountSearch.class);
                 startActivity(toAdminSearch);
             }
@@ -38,7 +37,6 @@ public class AdminDashboard extends AppCompatActivity {
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(AdminDashboard.this, "SIGN OUT", Toast.LENGTH_SHORT).show();
                 FirebaseAuth.getInstance().signOut();
                 Intent AdmintoLogin = new Intent(AdminDashboard.this, Login.class);
                 startActivity(AdmintoLogin);
