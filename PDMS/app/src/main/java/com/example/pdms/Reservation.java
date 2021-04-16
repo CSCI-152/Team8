@@ -3,52 +3,70 @@
 package com.example.pdms;
 
 public class Reservation {
-    private String ReservationID;
-    private String ReservationDate;
-    private String ReservationHM;
-    private String PatientID;
-    private String DoctorID;
-    private String Hospital;
+    private String reservationID;
+    private String reservationDate;
+    private String reservationHM;
+    private String patientID;
+    private String doctorID;
+    private String hospital;
 
 
     private Reservation() {}
+
+    public Reservation(String ReservationID, String ReservationDate, String ReservationHM, String PatientID, String DoctorID, String Hospital) {
+        this.reservationID = ReservationID;
+        this.reservationDate = ReservationDate;
+        this.reservationHM = ReservationHM;
+        this.patientID = PatientID;
+        this.doctorID = DoctorID;
+        this.hospital = Hospital;
+    }
+
     public Reservation(String Patient) {
-        this.PatientID = Patient;
+        this.patientID = Patient;
     }
+
     public String getReservationID() {
-        return ReservationID;
-    }
-
-    public void setDoctorID(String doctorID) {
-        this.DoctorID = doctorID;
-    }
-    public void setHospital(String hospital) {
-        this.Hospital = hospital;
-    }
-    public void setReservationDate(int year, int month, int day) {
-        this.ReservationDate = year + "/" + String.format("%02d",month) + "/" + String.format("%02d",day);
-    }
-    public void setReservationHM(int hour, int minute) {
-        this.ReservationHM = String.format("%02d",hour) + ":" + String.format("%02d",minute); //pad with '0' so that '7' will show up as '07'
-    }
-
-    public String getPatientID() {
-        return PatientID;
-    }
-    public String getDoctorID() {
-        return DoctorID;
-    }
-
-    public String getHospital() {
-        return Hospital;
+        return reservationID;
     }
 
     public String getReservationDate() {
-        return ReservationDate;
+        return reservationDate;
     }
+
     public String getReservationHM() {
-        return ReservationHM;
+        return reservationHM;
     }
+
+    public String getPatientID() {
+        return patientID;
+    }
+
+    public String getDoctorID() {
+        return doctorID;
+    }
+
+    public String getHospital() {
+        return hospital;
+    }
+
+    public void setPatientID(String patientID) {
+        this.patientID = patientID;
+    }
+
+    public void setDoctorID(String doctorID) {
+        this.doctorID = doctorID;
+    }
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
+    }
+    public void setReservationDate(int year, int month, int day) {
+        this.reservationDate = year + "/" + String.format("%02d",month) + "/" + String.format("%02d",day);
+    }
+    public void setReservationHM(int hour, int minute) {
+        this.reservationHM = String.format("%02d",hour) + ":" + String.format("%02d",minute); //pad with '0' so that '7' will show up as '07'
+    }
+
     public String printReservationDateFormatted() {
         //returns date as dd/mm/yyyy, hh:mm
         String initYear = this.getReservationDate();
@@ -65,7 +83,7 @@ public class Reservation {
         return true;
     }
     public void finalizeReservation() {
-        this.ReservationID = createReservationID(this.PatientID, this.DoctorID);
+        this.reservationID = createReservationID(this.patientID, this.doctorID);
     }
     private String createReservationID(String userID, String doctorID){
         String reservationID = "";

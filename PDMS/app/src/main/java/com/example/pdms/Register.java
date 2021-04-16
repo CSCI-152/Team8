@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Register extends AppCompatActivity {
 
     FirebaseAuth mAuth;
-    EditText RegEmail, RegPass;
+    EditText RegName, RegEmail, RegPass;
     CheckBox DoctorBox, AdminBox;
     Button RegBTN;
     String isUser;
@@ -35,6 +35,7 @@ public class Register extends AppCompatActivity {
 
         RegEmail = findViewById(R.id.RegisterEmail);
         RegPass = findViewById(R.id.RegisterPassword);
+        RegName = findViewById(R.id.RegisterName);
 
         DoctorBox = findViewById(R.id.RegisterDoctor);
         AdminBox = findViewById(R.id.RegisterAdmin);
@@ -46,21 +47,22 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 String Email = RegEmail.getText().toString();
                 String Password = RegPass.getText().toString();
+                String Name = RegName.getText().toString();
 
                 isType();
 
-                if(Email.isEmpty() || Password.isEmpty()){
+                if(Email.isEmpty() || Password.isEmpty() || Name.isEmpty()){
                     Toast.makeText(Register.this, "Please fill in Email and Password", Toast.LENGTH_SHORT).show();
                 }
                 else if(Password.length()<6){
                     Toast.makeText(Register.this, "Password need to be 6 or more", Toast.LENGTH_SHORT).show();
                 }
-                else if(!Email.isEmpty() && !Password.isEmpty()){
+                else if(!Email.isEmpty() && !Password.isEmpty() && !Name.isEmpty()){
                     mAuth.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                regUserType(isUser,Email);
+                                regUserType(isUser,Email,Name);
                             }
                             else {
                                 Toast.makeText(Register.this, "Register UnSuccessful", Toast.LENGTH_SHORT).show();
@@ -88,7 +90,7 @@ public class Register extends AppCompatActivity {
         }
     };
 
-    private void regUserType(String userType, String email){//register the type of User
+    private void regUserType(String userType, String email, String name){//register the type of User
         UserType UserIs = new UserType(userType);//create a user type
 
         FirebaseDatabase.getInstance().getReference("UserType")//get the folder UserType from firebase
@@ -97,7 +99,7 @@ public class Register extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    regUserData(email); //if the task is successful call regUserData to register email
+                    regUserData(email, name); //if the task is successful call regUserData to register email
                 }
                 else{//else the task is not successful make a toast about it
                     Toast.makeText(Register.this, "Register User Type not successful", Toast.LENGTH_SHORT).show();
@@ -106,8 +108,8 @@ public class Register extends AppCompatActivity {
         });
     }
 
-    private void regUserData(String email){
-        UserDB User = new UserDB(email);
+    private void regUserData(String email, String name){
+        UserDB User = new UserDB(email,name);
 
         FirebaseDatabase.getInstance().getReference(isUser)
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
