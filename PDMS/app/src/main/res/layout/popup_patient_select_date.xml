@@ -6,6 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/txt_message"
+        android:layout_width="235dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Appointments must be made 1 week in advance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <CalendarView
         android:id="@+id/cv_calendarView"
         android:layout_width="wrap_content"
@@ -13,13 +24,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_message" />
 
     <TimePicker
         android:id="@+id/tp_timePicker"
         android:layout_width="281dp"
         android:layout_height="151dp"
-        android:layout_marginTop="4dp"
         android:timePickerMode="spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,26 +39,26 @@
         android:id="@+id/bt_date_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="32dp"
         android:text="Confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/bt_date_cancel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tp_timePicker"
-        app:layout_constraintVertical_bias="0.066" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/bt_date_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="32dp"
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/bt_date_confirm"
         app:layout_constraintTop_toBottomOf="@+id/tp_timePicker"
-        app:layout_constraintVertical_bias="0.077" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
