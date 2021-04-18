@@ -3,9 +3,11 @@ package com.example.pdms;
 public class UserDB {
 
     private String Email;
+    private String Name;
 
-    public UserDB(String Email) {
+    public UserDB(String Email, String Name) {
         this.Email = Email;
+        this.Name = Name;
     }
 
     public void setEmail(String Email) {
@@ -14,5 +16,13 @@ public class UserDB {
 
     public String getEmail() {
         return Email;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
     }
 };

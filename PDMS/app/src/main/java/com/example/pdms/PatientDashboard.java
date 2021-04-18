@@ -91,6 +91,10 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
             Intent toBill = new Intent(PatientDashboard.this, Patient_Bill.class);
             startActivity(toBill);
         }
+        if(id==R.id.reservationlist){
+            Intent toReservationList = new Intent(PatientDashboard.this, PatientReservationList.class);
+            startActivity(toReservationList);
+        }
         if(id == R.id.profile){
             Intent toProfile = new Intent(this, Patient_Profile.class);
             startActivity(toProfile);

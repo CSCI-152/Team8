@@ -10,8 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PDMS">
-        <activity android:name=".DoctorHospital"></activity>
-
+        <activity android:name=".PatientReservationList" />
+        <activity android:name=".DoctorHospital" />
         <meta-data
             android:name="firebase_inapp_message_auto_data_collection_enabled"
             android:value="false" />

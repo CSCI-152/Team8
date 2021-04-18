@@ -10,7 +10,7 @@ public class Reservation implements Serializable {
     private String PatientID;
     private String DoctorID;
     private String Hospital;
-
+  
     private Reservation() {}
     public Reservation(String Patient) {
         this.PatientID = Patient;
@@ -76,3 +76,4 @@ public class Reservation implements Serializable {
         return reservationID;
     }
 }
+    
