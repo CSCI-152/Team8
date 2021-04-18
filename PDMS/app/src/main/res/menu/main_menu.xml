@@ -9,6 +9,9 @@
             android:id="@+id/bill"
             android:title="Bill"/>
         <item
+            android:id="@+id/reservationlist"
+            android:title="Reservation List"/>
+        <item
             android:id="@+id/profile"
             android:title="Profile"/>
         <item
