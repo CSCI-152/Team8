@@ -53,6 +53,7 @@
         <activity android:name=".PatientAboutUs" />
         <activity android:name=".PatientContactUs" />
         <activity android:name=".PatientReservation" />
+        <activity android:name=".PatientReservation_success" />
         <activity android:name=".AdminDashboard" />
         <activity android:name=".AdminAccountSearch" />
         <activity android:name=".AdminA" />

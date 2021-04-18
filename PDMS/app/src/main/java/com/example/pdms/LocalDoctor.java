@@ -6,6 +6,7 @@ import java.io.Serializable;
 public class LocalDoctor implements Serializable{
     private String UID;
     private String email;
+    private LocalDoctor() {}
     public LocalDoctor(String UID, String email) {
         this.UID = UID;
         this.email = email;
@@ -15,5 +16,11 @@ public class LocalDoctor implements Serializable{
     }
     public String getEmail() {
         return this.email;
+    }
+    public void setUID(String UID) {
+        this.UID = UID;
+    }
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

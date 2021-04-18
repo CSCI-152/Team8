@@ -3,6 +3,7 @@ package com.example.pdms;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,6 +23,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
@@ -133,7 +136,6 @@ public class PatientReservation extends AppCompatActivity {
                 }
                 adapter.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -174,23 +176,39 @@ public class PatientReservation extends AppCompatActivity {
         dialog.show();
 
         pp_cv_calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
-                currentReservation.setReservationDate(year, month, day);
+                //verify date
+                //if not send warning
+                //raise flag
+                LocalDate ldn = LocalDate.now();
+                LocalDate ldc = LocalDate.of(year, month+1, day);
+                if(ldc.isBefore(ldn.plusDays(7))) {
+                    currentReservation.resetReservationDateAndTime();
+                    Toast.makeText(PatientReservation.this, "Please Select a Valid date.", Toast.LENGTH_SHORT).show();
+                } else if (ldc.isAfter(ldn.plusDays(7))) {
+                    currentReservation.setReservationDate(year, month+1, day);
+                }
             }
         });
         pp_bt_date_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentReservation.setReservationHM(pp_tp_timePicker.getCurrentHour(),pp_tp_timePicker.getCurrentMinute());
-                displayDate(currentReservation);
-                bt_selectDate.setText("Change Date");
-                dialog.dismiss();
+                if(currentReservation.getReservationDate() == null) {
+                    Toast.makeText(PatientReservation.this, "Please Select a Valid date.", Toast.LENGTH_SHORT).show();
+                } else {
+                    currentReservation.setReservationHM(pp_tp_timePicker.getCurrentHour(), pp_tp_timePicker.getCurrentMinute());
+                    displayDate(currentReservation);
+                    bt_selectDate.setText("Change Date");
+                    dialog.dismiss();
+                }
             }
         });
         pp_bt_date_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                currentReservation.resetReservationDateAndTime();
                 txt_selectedDate.setText("");
                 dialog.dismiss();
             }
@@ -202,14 +220,17 @@ public class PatientReservation extends AppCompatActivity {
     }
     private void makeCurrentReservation(Reservation currentReservation) {
         currentReservation.finalizeReservation();
+        Intent reserveSuccess = new Intent(getBaseContext(), PatientReservation_success.class);
+        reserveSuccess.putExtra("Reservation", currentReservation);
         FirebaseDatabase.getInstance().getReference("Reservations")
                 .child(currentReservation.getReservationID())
                 .setValue(currentReservation).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(PatientReservation.this, "Reservation made!", Toast.LENGTH_SHORT).show();
-                    //start next task
+                    //Toast.makeText(PatientReservation.this, "Reservation made!", Toast.LENGTH_SHORT).show();
+                    startActivity(reserveSuccess);
+                    finish();
                 } else {
                     Toast.makeText(PatientReservation.this, "There was an error", Toast.LENGTH_SHORT).show();
                 }

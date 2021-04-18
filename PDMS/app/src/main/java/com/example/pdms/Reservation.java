@@ -1,72 +1,55 @@
-
-
 package com.example.pdms;
 
-public class Reservation {
-    private String reservationID;
-    private String reservationDate;
-    private String reservationHM;
-    private String patientID;
-    private String doctorID;
-    private String hospital;
+import java.io.Serializable;
 
-
+@SuppressWarnings("serial")
+public class Reservation implements Serializable {
+    private String ReservationID;
+    private String ReservationDate;
+    private String ReservationHM;
+    private String PatientID;
+    private String DoctorID;
+    private String Hospital;
+  
     private Reservation() {}
-
-    public Reservation(String ReservationID, String ReservationDate, String ReservationHM, String PatientID, String DoctorID, String Hospital) {
-        this.reservationID = ReservationID;
-        this.reservationDate = ReservationDate;
-        this.reservationHM = ReservationHM;
-        this.patientID = PatientID;
-        this.doctorID = DoctorID;
-        this.hospital = Hospital;
-    }
-
     public Reservation(String Patient) {
-        this.patientID = Patient;
+        this.PatientID = Patient;
     }
-
     public String getReservationID() {
-        return reservationID;
+        return ReservationID;
     }
-
     public String getReservationDate() {
-        return reservationDate;
+        return ReservationDate;
     }
-
     public String getReservationHM() {
-        return reservationHM;
+        return ReservationHM;
     }
-
     public String getPatientID() {
-        return patientID;
+        return PatientID;
     }
-
     public String getDoctorID() {
-        return doctorID;
+        return DoctorID;
     }
-
     public String getHospital() {
-        return hospital;
-    }
-
-    public void setPatientID(String patientID) {
-        this.patientID = patientID;
+        return Hospital;
     }
 
     public void setDoctorID(String doctorID) {
-        this.doctorID = doctorID;
+        this.DoctorID = doctorID;
     }
     public void setHospital(String hospital) {
-        this.hospital = hospital;
+        this.Hospital = hospital;
+    }
+    public void resetReservationDateAndTime(){
+        this.ReservationDate = null;
+        this.ReservationHM = null;
     }
     public void setReservationDate(int year, int month, int day) {
-        this.reservationDate = year + "/" + String.format("%02d",month) + "/" + String.format("%02d",day);
+        this.ReservationDate = year + "/" + String.format("%02d",month) + "/" + String.format("%02d",day);
     }
     public void setReservationHM(int hour, int minute) {
-        this.reservationHM = String.format("%02d",hour) + ":" + String.format("%02d",minute); //pad with '0' so that '7' will show up as '07'
+        this.ReservationHM = String.format("%02d",hour) + ":" + String.format("%02d",minute); //pad with '0' so that '7' will show up as '07'
     }
-
     public String printReservationDateFormatted() {
         //returns date as dd/mm/yyyy, hh:mm
         String initYear = this.getReservationDate();
@@ -83,7 +66,7 @@ public class Reservation {
         return true;
     }
     public void finalizeReservation() {
-        this.reservationID = createReservationID(this.patientID, this.doctorID);
+        this.ReservationID = createReservationID(this.PatientID, this.DoctorID);
     }
     private String createReservationID(String userID, String doctorID){
         String reservationID = "";
@@ -93,3 +76,4 @@ public class Reservation {
         return reservationID;
     }
 }
+    

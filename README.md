@@ -21,7 +21,7 @@ PDMS is a mobile application that will help patients schedule their appointments
 
 User: Profile Page, Settings Page, Calendar and Reservation, Search, Contact Us, About Us, Bill, Logout 
 
-Doctor: Appointment Page, Patient Chart, Prescriptions, Logout
+Doctor: Appointment Page, Patient Chart, Hospital Registration, Prescriptions, Logout
 
 Admin: Modify Bill, Account Search, Logout
 
