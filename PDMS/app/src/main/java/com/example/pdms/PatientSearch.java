@@ -27,7 +27,7 @@ public class PatientSearch extends AppCompatActivity {
     EditText et_search;
     Button bt_search;
     ListView listView;
-    ArrayList<LocalDoctor> doctorList = new ArrayList<LocalDoctor>();
+    ArrayList<Doctor> doctorList = new ArrayList<Doctor>();
 
     AlertDialog.Builder dialogBuilder;
     AlertDialog dialog;
@@ -53,8 +53,9 @@ public class PatientSearch extends AppCompatActivity {
                 list.clear();
                 int i = 0;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    readDoctorData(snapshot.getKey(), snapshot.getValue().toString());
-                    list.add(doctorList.get(i).getEmail());
+                    Doctor ld = snapshot.getValue(Doctor.class);
+                    list.add(ld.getName());
+                    doctorList.add(ld);
                     i++;
                 }
                 adapter.notifyDataSetChanged();
@@ -85,10 +86,6 @@ public class PatientSearch extends AppCompatActivity {
             }
         });
     }
-    private void readDoctorData(String docKey, String docData) {
-        LocalDoctor doctor = new LocalDoctor(docKey, docData.substring(7, docData.length()-1));
-        doctorList.add(doctor);
-    }
     private int doctorListPos(String doctorQuery) {
         //search list of doctors
             if (doctorList == null) {
@@ -97,7 +94,7 @@ public class PatientSearch extends AppCompatActivity {
             int length = doctorList.size();
             int j = 0;
             while (j < length) {
-                if (doctorList.get(j).getEmail().equals(doctorQuery)) {
+                if (doctorList.get(j).getName().equals(doctorQuery)) {
                     return j;
                 }
                 j = j + 1;
@@ -113,11 +110,11 @@ public class PatientSearch extends AppCompatActivity {
         list.add(doctorList.get(doctorPos).getEmail());
         adapter.notifyDataSetChanged();
     }
-    private void reservationPopUp(LocalDoctor selectedDoctor) {
+    private void reservationPopUp(Doctor selectedDoctor) {
         dialogBuilder = new AlertDialog.Builder(PatientSearch.this);
         final View contactPopupView = getLayoutInflater().inflate(R.layout.popup_patient_search, null);
         pp_txt_doctorName = (TextView) contactPopupView.findViewById(R.id.txt_doctorName);
-        pp_txt_doctorName.setText(selectedDoctor.getEmail());
+        pp_txt_doctorName.setText(selectedDoctor.getName() + "\n" + selectedDoctor.getEmail());
         pp_bt_makeReservation = (Button) contactPopupView.findViewById(R.id.bt_makeReservation);
         pp_bt_return = (Button) contactPopupView.findViewById(R.id.bt_return);
 
@@ -130,7 +127,7 @@ public class PatientSearch extends AppCompatActivity {
             public void onClick(View view) {
                 //Toast.makeText(PatientSearch.this, "start reservation activity", Toast.LENGTH_SHORT).show();
                 Intent patientReservation = new Intent(getBaseContext(), PatientReservation.class);
-                patientReservation.putExtra("LocalDoctor", selectedDoctor);
+                patientReservation.putExtra("Doctor", selectedDoctor);
                 startActivity(patientReservation);
                 dialog.dismiss();
             }
