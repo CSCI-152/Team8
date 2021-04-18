@@ -4,51 +4,51 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class Reservation implements Serializable {
-    private String ReservationID;
-    private String ReservationDate;
-    private String ReservationHM;
-    private String PatientID;
-    private String DoctorID;
-    private String Hospital;
+    private String reservationID;
+    private String reservationDate;
+    private String reservationHM;
+    private String patientID;
+    private String doctorID;
+    private String hospital;
   
     private Reservation() {}
     public Reservation(String Patient) {
-        this.PatientID = Patient;
+        this.patientID = Patient;
     }
     public String getReservationID() {
-        return ReservationID;
+        return reservationID;
     }
     public String getReservationDate() {
-        return ReservationDate;
+        return reservationDate;
     }
     public String getReservationHM() {
-        return ReservationHM;
+        return reservationHM;
     }
     public String getPatientID() {
-        return PatientID;
+        return patientID;
     }
     public String getDoctorID() {
-        return DoctorID;
+        return doctorID;
     }
     public String getHospital() {
-        return Hospital;
+        return hospital;
     }
 
     public void setDoctorID(String doctorID) {
-        this.DoctorID = doctorID;
+        this.doctorID = doctorID;
     }
     public void setHospital(String hospital) {
-        this.Hospital = hospital;
+        this.hospital = hospital;
     }
     public void resetReservationDateAndTime(){
-        this.ReservationDate = null;
-        this.ReservationHM = null;
+        this.reservationDate = null;
+        this.reservationHM = null;
     }
     public void setReservationDate(int year, int month, int day) {
-        this.ReservationDate = year + "/" + String.format("%02d",month) + "/" + String.format("%02d",day);
+        this.reservationDate = year + "/" + String.format("%02d",month) + "/" + String.format("%02d",day);
     }
     public void setReservationHM(int hour, int minute) {
-        this.ReservationHM = String.format("%02d",hour) + ":" + String.format("%02d",minute); //pad with '0' so that '7' will show up as '07'
+        this.reservationHM = String.format("%02d",hour) + ":" + String.format("%02d",minute); //pad with '0' so that '7' will show up as '07'
     }
     public String printReservationDateFormatted() {
         //returns date as dd/mm/yyyy, hh:mm
@@ -66,7 +66,7 @@ public class Reservation implements Serializable {
         return true;
     }
     public void finalizeReservation() {
-        this.ReservationID = createReservationID(this.PatientID, this.DoctorID);
+        this.reservationID = createReservationID(this.patientID, this.doctorID);
     }
     private String createReservationID(String userID, String doctorID){
         String reservationID = "";
