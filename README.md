@@ -19,7 +19,7 @@ PDMS is a mobile application that will help patients schedule their appointments
 
  For this app, we created a home page in which the app user can access his/her information as User, Doctor, and Admin. For User, Doctor, and Admin, they all can login to access their dashboards or logout out of their dashboards. If they don’t have an account, they can register by clicking on the Register button of the Login forms provided. If they forgot the password for any reason, they have the option of filling out the form in which they are able to reclaim the password. 
 
-User: Profile Page, Settings Page, Calendar and Reservation, Search, Contact Us, About Us, Bill, Logout 
+User: Profile Page, Settings Page, Calendar and Reservation, Search, Reservation List, Contact Us, About Us, Bill, Logout 
 
 Doctor: Appointment Page, Patient Chart, Hospital Registration, Prescriptions, Logout
 
