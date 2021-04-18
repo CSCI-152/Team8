@@ -1,15 +1,15 @@
-
-
 package com.example.pdms;
 
-public class Reservation {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Reservation implements Serializable {
     private String ReservationID;
     private String ReservationDate;
     private String ReservationHM;
     private String PatientID;
     private String DoctorID;
     private String Hospital;
-
 
     private Reservation() {}
     public Reservation(String Patient) {
@@ -18,6 +18,21 @@ public class Reservation {
     public String getReservationID() {
         return ReservationID;
     }
+    public String getReservationDate() {
+        return ReservationDate;
+    }
+    public String getReservationHM() {
+        return ReservationHM;
+    }
+    public String getPatientID() {
+        return PatientID;
+    }
+    public String getDoctorID() {
+        return DoctorID;
+    }
+    public String getHospital() {
+        return Hospital;
+    }
 
     public void setDoctorID(String doctorID) {
         this.DoctorID = doctorID;
@@ -25,29 +40,15 @@ public class Reservation {
     public void setHospital(String hospital) {
         this.Hospital = hospital;
     }
+    public void resetReservationDateAndTime(){
+        this.ReservationDate = null;
+        this.ReservationHM = null;
+    }
     public void setReservationDate(int year, int month, int day) {
         this.ReservationDate = year + "/" + String.format("%02d",month) + "/" + String.format("%02d",day);
     }
     public void setReservationHM(int hour, int minute) {
         this.ReservationHM = String.format("%02d",hour) + ":" + String.format("%02d",minute); //pad with '0' so that '7' will show up as '07'
-    }
-
-    public String getPatientID() {
-        return PatientID;
-    }
-    public String getDoctorID() {
-        return DoctorID;
-    }
-
-    public String getHospital() {
-        return Hospital;
-    }
-
-    public String getReservationDate() {
-        return ReservationDate;
-    }
-    public String getReservationHM() {
-        return ReservationHM;
     }
     public String printReservationDateFormatted() {
         //returns date as dd/mm/yyyy, hh:mm
