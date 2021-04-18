@@ -3,7 +3,6 @@ package com.example.pdms;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,7 +22,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -35,7 +33,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class PatientReservation extends AppCompatActivity {
     TextView txt_doctorEmail, txt_hospitalName, txt_selectedDate;
     Button bt_selectDoctor, bt_selectHospital, bt_selectDate, bt_confirm, bt_cancel;
-    LocalDoctor selectedDoctor;
+    Doctor selectedDoctor;
 
     AlertDialog.Builder dialogBuilder;
     AlertDialog dialog;
@@ -52,8 +50,8 @@ public class PatientReservation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_reservation);
         txt_doctorEmail = findViewById(R.id.txt_doctorEmail);
-        selectedDoctor = (LocalDoctor) getIntent().getSerializableExtra("LocalDoctor");
-        txt_doctorEmail.setText(selectedDoctor.getEmail());
+        selectedDoctor = (Doctor) getIntent().getSerializableExtra("Doctor");
+        txt_doctorEmail.setText(selectedDoctor.getName());
         txt_hospitalName = findViewById(R.id.txt_hospitalName);
         bt_selectDoctor = findViewById(R.id.bt_selectDoctor);
         if(!txt_doctorEmail.getText().toString().isEmpty()) {
@@ -110,7 +108,7 @@ public class PatientReservation extends AppCompatActivity {
             }
         });
     }
-    private void popupPatientSelectHospital(LocalDoctor selectedDoctor, Reservation currentReservation) {
+    private void popupPatientSelectHospital(Doctor selectedDoctor, Reservation currentReservation) {
         //pull list of hospitals correlating to doctor id
         //make hospital class
         //display as listview
@@ -163,7 +161,7 @@ public class PatientReservation extends AppCompatActivity {
             }
         });
     }
-    private void popupPatientSelectDate(LocalDoctor selectedDoctor, Reservation currentReservation) {
+    private void popupPatientSelectDate(Doctor selectedDoctor, Reservation currentReservation) {
         dialogBuilder = new AlertDialog.Builder(PatientReservation.this);
         final View contactPopupView = getLayoutInflater().inflate(R.layout.popup_patient_select_date, null);
         pp_cv_calendarView = (CalendarView) contactPopupView.findViewById(R.id.cv_calendarView);
@@ -222,6 +220,7 @@ public class PatientReservation extends AppCompatActivity {
         currentReservation.finalizeReservation();
         Intent reserveSuccess = new Intent(getBaseContext(), PatientReservation_success.class);
         reserveSuccess.putExtra("Reservation", currentReservation);
+        reserveSuccess.putExtra("Doctor", selectedDoctor);
         FirebaseDatabase.getInstance().getReference("Reservations")
                 .child(currentReservation.getReservationID())
                 .setValue(currentReservation).addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -17,7 +17,6 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.inappmessaging.FirebaseInAppMessaging;
 
 public class PatientDashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -63,8 +62,8 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
             public void onClick(View v) {
                 //Toast.makeText(PatientDashboard.this, "RESERVE APPOINTMENT", Toast.LENGTH_SHORT).show();
                 Intent patientReservation = new Intent(getBaseContext(), PatientReservation.class);
-                LocalDoctor blankDoctor = new LocalDoctor("","");
-                patientReservation.putExtra("LocalDoctor", blankDoctor);
+                Doctor blankDoctor = new Doctor("","");
+                patientReservation.putExtra("Doctor", blankDoctor);
                 startActivity(patientReservation);
 
             }

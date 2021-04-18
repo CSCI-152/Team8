@@ -5,18 +5,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class PatientReservation_success extends AppCompatActivity {
     TextView txt_reservation;
     Reservation currentReservation;
+    Doctor selectedDoctor;
     Button bt_home;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +18,9 @@ public class PatientReservation_success extends AppCompatActivity {
         setContentView(R.layout.activity_patient_reservation_success);
         txt_reservation = findViewById(R.id.txt_message_2);
         currentReservation = (Reservation) getIntent().getSerializableExtra("Reservation");
+        selectedDoctor = (Doctor) getIntent().getSerializableExtra("Doctor");
         bt_home = findViewById(R.id.bt_home);
-        displayReservation(currentReservation);
+        displayReservation();
 
         bt_home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,22 +29,10 @@ public class PatientReservation_success extends AppCompatActivity {
             }
         });
     }
-    private void displayReservation(Reservation currentReservation) {
+    private void displayReservation() {
         String date = currentReservation.printReservationDateFormatted();
-        String doctorID = currentReservation.getDoctorID();
+        String doctorName = selectedDoctor.getName();
         String hospitalName = currentReservation.getHospital();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Doctors").child(doctorID);
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    txt_reservation.setText("Appointment: \n" + snapshot.getValue().toString() + " | " + hospitalName + " | " + date);
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                txt_reservation.setText("error");
-            }
-        });
+        txt_reservation.setText("Appointment: \n" + doctorName + " | " + hospitalName + " | " + date);
     }
 }

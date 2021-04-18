@@ -110,6 +110,8 @@ public class Register extends AppCompatActivity {
 
     private void regUserData(String email, String name){
         UserDB User = new UserDB(email,name);
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        User.setUID(uid);
 
         FirebaseDatabase.getInstance().getReference(isUser)
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
