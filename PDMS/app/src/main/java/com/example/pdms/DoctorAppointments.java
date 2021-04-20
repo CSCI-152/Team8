@@ -9,6 +9,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,22 +40,20 @@ public class DoctorAppointments extends AppCompatActivity {
         final ArrayList<Reservation> reservationList = new ArrayList<>();
         final ArrayAdapter adapter = new ArrayAdapter<String>(DoctorAppointments.this, R.layout.list_item, list);
         listView.setAdapter(adapter);
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Reservations");
+        list.add("You have no upcoming appointments");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("DoctorAppointment");
         reference.addValueEventListener(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                list.clear();
+                reservationList.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Reservation newReservation = snapshot.getValue(Reservation.class);
-                    ////
-                    /*
-                    REMEMBER TO TURN THIS BACK ON
-                    */
-                    ////
-                    //if(newReservation.getDoctorID().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                    if(newReservation.getDoctorID().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
                         reservationPrint.displayReservationInfo(newReservation, list, adapter);
                         reservationList.add(newReservation);
-                    //}
+                    }
                 }
             }
             @Override
