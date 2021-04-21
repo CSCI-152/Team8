@@ -1,6 +1,12 @@
 package com.example.pdms;
 
+import android.os.Build;
+
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import androidx.annotation.RequiresApi;
 
 @SuppressWarnings("serial")
 public class Reservation implements Serializable {
@@ -45,7 +51,7 @@ public class Reservation implements Serializable {
         this.reservationHM = null;
     }
     public void setReservationDate(int year, int month, int day) {
-        this.reservationDate = year + "/" + String.format("%02d",month) + "/" + String.format("%02d",day);
+        this.reservationDate = year + "-" + String.format("%02d",month) + "-" + String.format("%02d",day);
     }
     public void setReservationHM(int hour, int minute) {
         this.reservationHM = String.format("%02d",hour) + ":" + String.format("%02d",minute); //pad with '0' so that '7' will show up as '07'
@@ -74,6 +80,13 @@ public class Reservation implements Serializable {
             reservationID = reservationID + userID.charAt(i) + doctorID.charAt(i);
         }
         return reservationID;
+    }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public LocalDateTime reservationAsDateTime() {
+        String str = this.getReservationDate() + " " + this.getReservationHM();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(str,formatter);
+        return dateTime;
     }
 }
     

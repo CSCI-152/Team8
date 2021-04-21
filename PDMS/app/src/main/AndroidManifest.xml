@@ -42,6 +42,7 @@
         <activity android:name=".DoctorPrescription" />
         <activity android:name=".DisplayPrescription" />
         <activity android:name=".DoctorDashboard" />
+        <activity android:name=".DoctorAppointments" />
         <activity android:name=".DoctorX" />
         <activity android:name=".DoctorY" />
         <activity android:name=".AdminModifyFees" />
