@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.inappmessaging.FirebaseInAppMessaging;
 
 public class PatientDashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    Button btn_calendarandreservation,btn_search;
+    Button btn_calendarandreservation,btn_search, btn_dosage;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     @Override
@@ -48,6 +48,7 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
 
         btn_calendarandreservation = (Button)findViewById(R.id.buttonCALENDARANDRESERVATION);
         btn_search = (Button)findViewById(R.id.buttonSEARCH);
+        btn_dosage = (Button)findViewById(R.id.buttonDOSAGE);
 
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +66,20 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
                 Doctor blankDoctor = new Doctor("","");
                 patientReservation.putExtra("Doctor", blankDoctor);
                 startActivity(patientReservation);
+
+            }
+        });
+
+        btn_dosage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(PatientDashboard.this, "Click on Dosage", Toast.LENGTH_SHORT).show();
+                //Intent patientReservation = new Intent(getBaseContext(), PatientReservation.class);
+                //Doctor blankDoctor = new Doctor("","");
+                //patientReservation.putExtra("Doctor", blankDoctor);
+                //startActivity(patientReservation);
+                Intent patientDosage = new Intent(PatientDashboard.this, PatientDosage.class);
+                startActivity(patientDosage);
 
             }
         });
