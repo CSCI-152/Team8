@@ -86,6 +86,10 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
         if(id == R.id.home){
             Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
         }
+        if(id == R.id.dosage){
+            Intent patientDosage = new Intent(PatientDashboard.this, PatientDosage.class);
+            startActivity(patientDosage);
+        }
         if(id == R.id.bill){
             Intent toBill = new Intent(PatientDashboard.this, Patient_Bill.class);
             startActivity(toBill);
