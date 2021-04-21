@@ -140,12 +140,4 @@ public class DoctorAppointments extends AppCompatActivity {
         list.set(i,list.get(j));
         list.set(j,temp);
     }
-    /*
-    int partition(ArrayList<Reservation> reservationList, int low, int high) {
-        Reservation pivot = reservationList.get(high);
-        int i = (low - 1);
-        for(int j = low; j <= high - 1; j++) {
-
-        }
-    }*/
 }
