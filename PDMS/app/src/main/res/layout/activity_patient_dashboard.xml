@@ -73,17 +73,6 @@
                     android:text="CALENDAR AND RESERVATION"
                     android:textSize="20sp" />
 
-                <Button
-                    android:id="@+id/buttonDOSAGE"
-                    android:layout_width="178dp"
-                    android:layout_height="117dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="598dp"
-                    android:layout_marginBottom="100dp"
-                    android:padding="25dip"
-                    android:text="Dosage"
-                    android:textSize="15sp" />
-
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

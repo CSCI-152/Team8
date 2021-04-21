@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class PatientDosage extends AppCompatActivity {
     RecyclerView view;
-    UserDB name;
+    String name;
     FirebaseDatabase database;
     DatabaseReference reference;
     ArrayList<Prescription> list;
@@ -35,13 +35,28 @@ public class PatientDosage extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         reference = database.getReference().child("Prescriptions");
-        DatabaseReference name = FirebaseDatabase.getInstance().getReference("Patients").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        DatabaseReference UserName = FirebaseDatabase.getInstance().getReference("Patients")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         //DatabaseReference patients1 = FirebaseDatabase.getInstance().getReference("Patients").child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
 
         list = new ArrayList<>();
         adapter = new patientDosageAdapter(this, list);
 
         view.setAdapter(adapter);
+
+        UserName.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                UserDB userDB = snapshot.getValue(UserDB.class);
+                name = userDB.getName();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         reference.addValueEventListener(new ValueEventListener() {
