@@ -49,6 +49,7 @@
         <activity android:name=".Calendar" />
         <activity android:name=".Patient_Bill" />
         <activity android:name=".PatientDashboard" />
+        <activity android:name=".PatientDosage"/>
         <activity android:name=".PatientSearch" />
         <activity android:name=".PatientSettings" />
         <activity android:name=".PatientAboutUs" />
