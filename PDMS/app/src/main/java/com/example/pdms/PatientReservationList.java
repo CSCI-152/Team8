@@ -52,6 +52,7 @@ public class PatientReservationList extends AppCompatActivity {
         AcceptedReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                AcceptedList.clear();
                 for(DataSnapshot db : snapshot.getChildren()){
                     Reservation reserve = db.getValue(Reservation.class);
                     if(reserve.getPatientID().equals(FirebaseAuth.getInstance().getCurrentUser()
@@ -72,6 +73,7 @@ public class PatientReservationList extends AppCompatActivity {
         PendingReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                PendingList.clear();
                 for(DataSnapshot db : snapshot.getChildren()){
                     Reservation reserve = db.getValue(Reservation.class);
                     if(reserve.getPatientID().equals(FirebaseAuth.getInstance().getCurrentUser()

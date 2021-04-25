@@ -49,6 +49,7 @@ public class Patient_Chart extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
                 for(DataSnapshot db: snapshot.getChildren())
                 {
                     Reservation reserve = db.getValue(Reservation.class);
