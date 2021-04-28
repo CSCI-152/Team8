@@ -8,20 +8,21 @@
 
     <TextView
         android:id="@+id/txt_doctorName"
-        android:layout_width="171dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="44dp"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
         android:text="Doctor Name"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:gravity="center"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/bt_makeReservation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="20dp"
         android:text="Make a Reservation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,8 +32,8 @@
         android:id="@+id/bt_return"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
         android:text="Return"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

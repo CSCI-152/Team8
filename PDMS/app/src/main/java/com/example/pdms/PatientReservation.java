@@ -121,11 +121,22 @@ public class PatientReservation extends AppCompatActivity {
         final ArrayAdapter adapter = new ArrayAdapter<String>(PatientReservation.this, R.layout.list_item, list);
         pp_listView.setAdapter(adapter);
 
+        list.add("We're sorry, It looks like this doctor isn't available at any hospital right now.");
+        pp_listView.setEnabled(false);
+        adapter.notifyDataSetChanged();
+
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Hospitals").child(selectedDoctor.getUID());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                list.clear();
+                //list.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String insert = snapshot.getValue().toString();
+                    if(!insert.isEmpty()) {
+                        list.clear();
+                        pp_listView.setEnabled(true);
+                    }
+                }
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String insert = snapshot.getValue().toString();
                     if(!insert.isEmpty()) {
@@ -136,7 +147,6 @@ public class PatientReservation extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
         dialogBuilder.setView(contactPopupView);
@@ -146,12 +156,13 @@ public class PatientReservation extends AppCompatActivity {
         pp_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                currentReservation.setHospital(pp_listView.getItemAtPosition(i).toString());
-                txt_hospitalName.setText(pp_listView.getItemAtPosition(i).toString());
-                if(!txt_hospitalName.getText().toString().isEmpty()) {
-                    bt_selectHospital.setText("Change Hospital");
-                }
-                dialog.dismiss();
+                    currentReservation.setHospital(pp_listView.getItemAtPosition(i).toString());
+                    txt_hospitalName.setText(pp_listView.getItemAtPosition(i).toString());
+                    if (!txt_hospitalName.getText().toString().isEmpty()) {
+                        bt_selectHospital.setText("Change Hospital");
+                    }
+                    dialog.dismiss();
+
             }
         });
         pp_bt_hospital_cancel.setOnClickListener(new View.OnClickListener() {

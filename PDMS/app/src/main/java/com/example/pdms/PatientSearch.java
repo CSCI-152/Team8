@@ -58,7 +58,8 @@ public class PatientSearch extends AppCompatActivity {
                     doctorList.add(ld);
                     i++;
                 }
-                adapter.notifyDataSetChanged();
+                sortDoctorList(list,doctorList,adapter);
+                //adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -85,6 +86,31 @@ public class PatientSearch extends AppCompatActivity {
                 reservationPopUp(doctorList.get(i));
             }
         });
+    }
+    void sortDoctorList(ArrayList<String> list, ArrayList<Doctor> doctorList, ArrayAdapter adapter) {
+        if (list.size() == 1 || list.size() == 0) {
+            return;
+        }
+        int size = doctorList.size();
+        for(int i = 0; i < size-1; i++) {
+            for (int j = i+1; j < doctorList.size(); j++) {
+                if(doctorList.get(i).getName().compareTo(doctorList.get(j).getName())>0){
+                    swapD(doctorList,i,j);
+                    swapL(list,i,j);
+                }
+            }
+        }
+        adapter.notifyDataSetChanged();
+    }
+    void swapD(ArrayList<Doctor> doctorList, int i, int j) {
+        Doctor temp = doctorList.get(i);
+        doctorList.set(i,doctorList.get(j));
+        doctorList.set(j,temp);
+    }
+    void swapL(ArrayList<String> list, int i, int j) {
+        String temp = list.get(i);
+        list.set(i,list.get(j));
+        list.set(j,temp);
     }
     private int doctorListPos(String doctorQuery) {
         //search list of doctors
