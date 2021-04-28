@@ -24,7 +24,8 @@ public class PatientSettings extends AppCompatActivity {
         pdmsswitch_2 = (SwitchCompat) findViewById(R.id.pdmsswitch_2);
 
         pdmsswitch_1.setChecked(preferences.getBoolean("discount",false));
-        pdmsswitch_2.setChecked(preferences.getBoolean("doctor",false));
+        pdmsswitch_2.setChecked(preferences.getBoolean("prescription",false));
+        //pdmsswitch_2.setChecked(preferences.getBoolean("prescription",false));
 
         pdmsswitch_1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,13 +51,13 @@ public class PatientSettings extends AppCompatActivity {
             public void onClick(View v) {
                 if(pdmsswitch_2.isChecked()){
                     SharedPreferences.Editor editor = preferences.edit();
-                    editor.putBoolean("doctor", true);
+                    editor.putBoolean("prescription", true);
                     editor.apply();
                     pdmsswitch_2.setChecked(true);
                 }
                 else{
                     SharedPreferences.Editor editor = preferences.edit();
-                    editor.putBoolean("doctor", false);
+                    editor.putBoolean("prescription", false);
                     editor.apply();
                     pdmsswitch_2.setChecked(false);
                 }

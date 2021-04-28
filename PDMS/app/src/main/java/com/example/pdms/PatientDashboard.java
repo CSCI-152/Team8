@@ -43,6 +43,12 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
         if(isNotification) {//if discount notification is set to true call the notification
             addNotificationEvent();//log discount notification
         }
+        Boolean isNotification2 = preferences.getBoolean("prescription", false);
+        if(isNotification2) {
+            addNotificationEvent2();
+        }
+        
+
 
         drawerLayout = findViewById(R.id.drawer_layout);
         drawerToggle = new ActionBarDrawerToggle(PatientDashboard.this,drawerLayout,R.string.open,R.string.close);
@@ -139,6 +145,14 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
         bundle.putString("title", "Discount Notification");//set the title
         firebaseAnalytics.logEvent("discount_notification", bundle);//set the event
     }
+
+    private void addNotificationEvent2() {
+        FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        Bundle bundle = new Bundle();
+        bundle.putString("title", "Prescription Notification");
+        firebaseAnalytics.logEvent("prescription_notification", bundle);
+    }
+
     private void setTxtPatientName(TextView txt_patientName) {
         DatabaseReference patientRef = FirebaseDatabase.getInstance().getReference("Patients")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
@@ -150,8 +164,9 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
                     PatientUser newPatient = snapshot.getValue(PatientUser.class);
                     txt_patientName.setText("Welcome, " + newPatient.getName());
                 }
-                //}
+                
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

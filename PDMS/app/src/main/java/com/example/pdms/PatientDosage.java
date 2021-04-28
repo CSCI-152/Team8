@@ -18,11 +18,11 @@ import java.util.ArrayList;
 
 public class PatientDosage extends AppCompatActivity {
     RecyclerView view;
-    String name;
     FirebaseDatabase database;
-    DatabaseReference reference;
+    DatabaseReference reference, UserName;
     ArrayList<Prescription> list;
     patientDosageAdapter adapter;
+    String name = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class PatientDosage extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         reference = database.getReference().child("Prescriptions");
-        DatabaseReference UserName = FirebaseDatabase.getInstance().getReference("Patients")
+        UserName = FirebaseDatabase.getInstance().getReference("Patients")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         //DatabaseReference patients1 = FirebaseDatabase.getInstance().getReference("Patients").child(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
 
@@ -44,9 +44,11 @@ public class PatientDosage extends AppCompatActivity {
 
         view.setAdapter(adapter);
 
-        UserName.addListenerForSingleValueEvent(new ValueEventListener() {
+
+        UserName.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                name = "";
                 UserDB userDB = snapshot.getValue(UserDB.class);
                 name = userDB.getName();
 
@@ -62,6 +64,7 @@ public class PatientDosage extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
                 for(DataSnapshot db: snapshot.getChildren())
                 {
                     Prescription prescription = db.getValue(Prescription.class);
