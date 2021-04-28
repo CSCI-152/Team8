@@ -1,17 +1,25 @@
 package com.example.pdms;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AdminDashboard extends AppCompatActivity {
     Button btn_account, btn_bill, btn_logout;
+    TextView txt_adminName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +27,8 @@ public class AdminDashboard extends AppCompatActivity {
         btn_account = (Button)findViewById(R.id.buttonADMINUSERS);
         btn_bill = (Button)findViewById(R.id.buttonBILL);
         btn_logout = (Button)findViewById(R.id.buttonLOGOUT);
+        txt_adminName = (TextView)findViewById(R.id.txt_adminName);
+        setTxtAdminName(txt_adminName);
 
         btn_account.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +51,25 @@ public class AdminDashboard extends AppCompatActivity {
                 Intent AdmintoLogin = new Intent(AdminDashboard.this, Login.class);
                 startActivity(AdmintoLogin);
                 finish();
+            }
+        });
+    }
+    private void setTxtAdminName(TextView txt_AdminName) {
+        DatabaseReference patientRef = FirebaseDatabase.getInstance().getReference("Admins")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        patientRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                if(snapshot.exists()) {
+                    Admin newAdmin = snapshot.getValue(Admin.class);
+                    txt_AdminName.setText("Welcome, " + newAdmin.getName());
+                }
+                //}
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
             }
         });
     }
