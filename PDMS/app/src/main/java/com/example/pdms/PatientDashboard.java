@@ -40,6 +40,8 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
         if(isNotification2) {
             addNotificationEvent2();
         }
+        
+
 
         drawerLayout = findViewById(R.id.drawer_layout);
         drawerToggle = new ActionBarDrawerToggle(PatientDashboard.this,drawerLayout,R.string.open,R.string.close);
