@@ -12,15 +12,22 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.inappmessaging.FirebaseInAppMessaging;
 
 public class PatientDashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     Button btn_calendarandreservation,btn_search;
+    TextView txt_patientName;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     @Override
@@ -34,8 +41,14 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
         //enable inAppMessage to send message
         Boolean isNotification = preferences.getBoolean("discount",false);
         if(isNotification) {//if discount notification is set to true call the notification
-            addNotifcationEvent();//log discount notification
+            addNotificationEvent();//log discount notification
         }
+        Boolean isNotification2 = preferences.getBoolean("prescription", false);
+        if(isNotification2) {
+            addNotificationEvent2();
+        }
+        
+
 
         drawerLayout = findViewById(R.id.drawer_layout);
         drawerToggle = new ActionBarDrawerToggle(PatientDashboard.this,drawerLayout,R.string.open,R.string.close);
@@ -48,11 +61,14 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
 
         btn_calendarandreservation = (Button)findViewById(R.id.buttonCALENDARANDRESERVATION);
         btn_search = (Button)findViewById(R.id.buttonSEARCH);
+        txt_patientName = (TextView)findViewById(R.id.txt_patientName);
+
+        setTxtPatientName(txt_patientName);
 
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(PatientDashboard.this, "GO TO SEARCH", Toast.LENGTH_SHORT).show();
+                
                 Intent patientSearch = new Intent(PatientDashboard.this, PatientSearch.class);
                 startActivity(patientSearch);
             }
@@ -60,7 +76,7 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
         btn_calendarandreservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(PatientDashboard.this, "RESERVE APPOINTMENT", Toast.LENGTH_SHORT).show();
+                
                 Intent patientReservation = new Intent(getBaseContext(), PatientReservation.class);
                 Doctor blankDoctor = new Doctor("","");
                 patientReservation.putExtra("Doctor", blankDoctor);
@@ -123,11 +139,38 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
         return false;
     }
 
-    private void addNotifcationEvent(){
+    private void addNotificationEvent(){
         FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics.getInstance(this);
         Bundle bundle = new Bundle();
         bundle.putString("title", "Discount Notification");//set the title
         firebaseAnalytics.logEvent("discount_notification", bundle);//set the event
     }
 
+    private void addNotificationEvent2() {
+        FirebaseAnalytics firebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        Bundle bundle = new Bundle();
+        bundle.putString("title", "Prescription Notification");
+        firebaseAnalytics.logEvent("prescription_notification", bundle);
+    }
+
+    private void setTxtPatientName(TextView txt_patientName) {
+        DatabaseReference patientRef = FirebaseDatabase.getInstance().getReference("Patients")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        patientRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                
+                if(snapshot.exists()) {
+                    PatientUser newPatient = snapshot.getValue(PatientUser.class);
+                    txt_patientName.setText("Welcome, " + newPatient.getName());
+                }
+                
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
 }
