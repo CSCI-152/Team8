@@ -68,7 +68,7 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(PatientDashboard.this, "GO TO SEARCH", Toast.LENGTH_SHORT).show();
+                
                 Intent patientSearch = new Intent(PatientDashboard.this, PatientSearch.class);
                 startActivity(patientSearch);
             }
@@ -76,7 +76,7 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
         btn_calendarandreservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(PatientDashboard.this, "RESERVE APPOINTMENT", Toast.LENGTH_SHORT).show();
+                
                 Intent patientReservation = new Intent(getBaseContext(), PatientReservation.class);
                 Doctor blankDoctor = new Doctor("","");
                 patientReservation.putExtra("Doctor", blankDoctor);
@@ -159,7 +159,7 @@ public class PatientDashboard extends AppCompatActivity implements NavigationVie
         patientRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                
                 if(snapshot.exists()) {
                     PatientUser newPatient = snapshot.getValue(PatientUser.class);
                     txt_patientName.setText("Welcome, " + newPatient.getName());
