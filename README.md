@@ -27,4 +27,4 @@ Admin: Modify Bill, Account Search, Logout
 
 ## Languages/Technologies: 
 
-Java, XML, Android Studio, SQLite, Firebase
+Java, XML, Android Studio, Firebase
