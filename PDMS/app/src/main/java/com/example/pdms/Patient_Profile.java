@@ -35,6 +35,8 @@ public class Patient_Profile extends AppCompatActivity {
     private EditText EditName, EditDOB, EditRefBy, EditBlood, EditPhone,EditMedHist;
      Button EditSave, EditCancel;
      TextView Edit;
+     TextView PatientNameV,PatientDOB,RefBy,BloodGroup,PhoneNum,PatientMedHist;
+    String UserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,44 +44,17 @@ public class Patient_Profile extends AppCompatActivity {
         setContentView(R.layout.activity_patient__profile);
 
 
-        final TextView PatientNameV = findViewById(R.id.PatientNameV);
-        final TextView PatientDOB = findViewById(R.id.PatientDOBV);
-        final TextView RefBy = findViewById(R.id.PatientReferredByV);
-        final TextView BloodGroup = findViewById(R.id.PatietnBloodV);
-        final TextView PhoneNum = findViewById(R.id.PatientPhoneV);
-        final TextView PatientMedHist = findViewById(R.id.PatientMedHistV);
+        PatientNameV = findViewById(R.id.PatientNameV);
+        PatientDOB = findViewById(R.id.PatientDOBV);
+        RefBy = findViewById(R.id.PatientReferredByV);
+        BloodGroup = findViewById(R.id.PatietnBloodV);
+        PhoneNum = findViewById(R.id.PatientPhoneV);
+        PatientMedHist = findViewById(R.id.PatientMedHistV);
 
         Edit = findViewById(R.id.PatientEditProfile);
 
-        String UserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
         databaseReference = FirebaseDatabase.getInstance().getReference("PatientsProfile");
-        databaseReference.child(UserId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                PatientsProfile profile = snapshot.getValue(PatientsProfile.class);
-                if(profile != null){
-                    String name = profile.getName();
-                    String DOB = profile.getDOB();
-                    String ReffBy = profile.getReferredBy();
-                    String BloodG = profile.getBloodGroup();
-                    String PhoneNumb = profile.getPhoneNum();
-                    String MedHist = profile.getMedicalHistory();
-
-                    PatientNameV.setText(name);
-                    PatientDOB.setText(DOB);
-                    RefBy.setText(ReffBy);
-                    BloodGroup.setText(BloodG);
-                    PhoneNum.setText(PhoneNumb);
-                    PatientMedHist.setText(MedHist);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Patient_Profile.this, "Please set Profile", Toast.LENGTH_SHORT).show();
-            }
-        });
+        ViewPatientProfile();
 
         Edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,5 +116,36 @@ public class Patient_Profile extends AppCompatActivity {
         });
 
     }
+
+    void ViewPatientProfile()
+    {
+        databaseReference.child(UserId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                PatientsProfile profile = snapshot.getValue(PatientsProfile.class);
+                if(profile != null){
+                    String name = profile.getName();
+                    String DOB = profile.getDOB();
+                    String ReffBy = profile.getReferredBy();
+                    String BloodG = profile.getBloodGroup();
+                    String PhoneNumb = profile.getPhoneNum();
+                    String MedHist = profile.getMedicalHistory();
+
+                    PatientNameV.setText(name);
+                    PatientDOB.setText(DOB);
+                    RefBy.setText(ReffBy);
+                    BloodGroup.setText(BloodG);
+                    PhoneNum.setText(PhoneNumb);
+                    PatientMedHist.setText(MedHist);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Patient_Profile.this, "Please set Profile", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
 }
