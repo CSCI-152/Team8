@@ -36,8 +36,8 @@ public class PrescriptionTest {
     }
     @Test
     public void setPhonenumber() {
-        String inputphonenumber = "patientphonenumber";
-        String expectedphonenumber = "patientphonenumber";
+        String inputphonenumber = "000-000-0000";
+        String expectedphonenumber = "000-000-0000";
         String outputphonenumber;
         Prescription prescription = new Prescription();
         prescription.setPhonenumber(inputphonenumber);
@@ -56,8 +56,8 @@ public class PrescriptionTest {
     }
     @Test
     public void setGender() {
-        String inputgender = "patientgender";
-        String expectedgender = "patientgender";
+        String inputgender = "Male/Female";
+        String expectedgender = "Male/Female";
         String outputgender;
         Prescription prescription = new Prescription();
         prescription.setGender(inputgender);
@@ -86,8 +86,8 @@ public class PrescriptionTest {
     }
     @Test
     public void setDate() {
-        String inputdate = "doctordate";
-        String expecteddate = "doctordate";
+        String inputdate = "00/00/0000";
+        String expecteddate = "00/00/0000";
         String outputdate;
         Prescription prescription = new Prescription();
         prescription.setDate(inputdate);

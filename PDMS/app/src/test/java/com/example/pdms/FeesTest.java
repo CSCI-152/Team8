@@ -38,8 +38,8 @@ public class FeesTest {
 
     @Test
     public void setBill() {
-        String inputbill = "bill";
-        String expectedbill = "bill";
+        String inputbill = "0.00";
+        String expectedbill = "0.00";
         String outputbill;
         Fees fees = new Fees();
         fees.setBill(inputbill);
