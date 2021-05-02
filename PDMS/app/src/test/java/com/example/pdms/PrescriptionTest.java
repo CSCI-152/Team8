@@ -86,8 +86,8 @@ public class PrescriptionTest {
     }
     @Test
     public void setDate() {
-        String inputdate = "00/00/0000";
-        String expecteddate = "00/00/0000";
+        String inputdate = "00/00/00";
+        String expecteddate = "00/00/00";
         String outputdate;
         Prescription prescription = new Prescription();
         prescription.setDate(inputdate);
